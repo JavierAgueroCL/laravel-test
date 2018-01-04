@@ -41,7 +41,7 @@
                 <br />
                 <div class="panel-body">
                     <div class="table-responsive">
-                    <table class="table table-bordered " id="table1">
+                    <table class="table table-bordered width100" id="table1">
                         <thead>
                         <tr class="filters">
                             <th>ID</th>

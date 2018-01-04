@@ -77,7 +77,7 @@
     "bootstrap-multiselect": "~0.9.13",
     "nestable-list": "https://github.com/dbushell/Nestable.git",
     "noty": "~2.3.8",
-    "owl.carousel": "https://github.com/OwlFonk/OwlCarousel.git",
+    "owlCarousel": "https://github.com/JeroenKnoops/owlfonk-owlcarousel.git",
     "product-view": "https://github.com/Modernizr/Modernizr.git",
     "select2": "~4.0.1",
     "select2-bootstrap-theme": "~0.1.0-beta.4",
@@ -129,7 +129,8 @@
     "hover": "~2.0.2",
     "jeditable": "https://github.com/tuupola/jquery_jeditable.git",
     "bootstrap-treeview": "~1.2.0",
-    "secureimage": "https://github.com/dapphp/securimage.git"
+    "jtable": "2.5.0",
+    "smalot-bootstrap-datetimepicker": "2.4.4"
   },
   "resolutions": {
     "bootstrap": "~3.3.6",

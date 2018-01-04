@@ -17,6 +17,7 @@ class SentinelUser
      */
     public function handle($request, Closure $next)
     {
+
         if (!Sentinel::check()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);

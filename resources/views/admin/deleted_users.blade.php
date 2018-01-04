@@ -60,7 +60,7 @@ Deleted users
                             <td>{!! $user->email !!}</td>
                             <td>{!! $user->created_at->diffForHumans() !!}</td>
                             <td>
-                                <a href="{{ route('admin.restore/user', $user->id) }}"><i class="livicon" data-name="user-flag" data-c="#6CC66C" data-hc="#6CC66C" data-size="18"></i></a>
+                                <a href="{{ route('admin.restore.user', $user->id) }}"><i class="livicon" data-name="user-flag" data-c="#6CC66C" data-hc="#6CC66C" data-size="18"></i></a>
                             </td>
                         </tr>
                     @endforeach

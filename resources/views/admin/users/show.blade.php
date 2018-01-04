@@ -8,6 +8,7 @@
 
 {{-- page level styles --}}
 @section('header_styles')
+    <meta name="csrf_token" content="{{ csrf_token() }}">
     <link href="{{ asset('assets/vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet"/>
     <link href="{{ asset('assets/vendors/x-editable/css/bootstrap-editable.css') }}" rel="stylesheet"/>
 
@@ -71,9 +72,17 @@
                                         <div class="col-md-4">
                                             <div class="img-file">
                                                 @if($user->pic)
-                                                    <img src="{!! url('/').'/uploads/users/'.$user->pic !!}" alt="profile pic" class="img-max">
+                                                    <img src="{!! url('/').'/uploads/users/'.$user->pic !!}" alt="img"
+                                                         class="img-responsive"/>
+                                                @elseif($user->gender === "male")
+                                                    <img src="{{ asset('assets/images/authors/avatar3.png') }}" alt="..."
+                                                         class="img-responsive"/>
+                                                @elseif($user->gender === "female")
+                                                    <img src="{{ asset('assets/images/authors/avatar5.png') }}" alt="..."
+                                                         class="img-responsive"/>
                                                 @else
-                                                    <img src="{{ asset('assets/img/authors/avatar3.jpg') }}" alt="profile pic">
+                                                    <img src="{{ asset('assets/images/authors/no_avatar.jpg') }}" alt="..."
+                                                         class="img-responsive"/>
                                                 @endif
                                             </div>
                                         </div>
@@ -244,7 +253,6 @@
             $('#change-password').click(function (e) {
                 e.preventDefault();
                 var check = false;
-                var sendData = '_token=' + $("input[name='_token']").val() + '&password=' + $('#password').val() + '&password-confirm=' + $('#password-confirm').val();
                 if ($('#password').val() ===""){
                     alert('Please Enter password');
                 }
@@ -255,11 +263,16 @@
                     check = true;
                 }
 
-                if (check) {
+                if(check == true){
+                var sendData =  '_token=' + $("input[name='_token']").val() +'&password=' + $('#password').val() +'&id=' + {{ $user->id }};
+                    var path = "passwordreset";
                     $.ajax({
-                        url: '{{ route('admin.passwordreset', $user->id) }}',
+                        url: path,
                         type: "post",
                         data: sendData,
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                        },
                         success: function (data) {
                             alert('password reset successful');
                         },

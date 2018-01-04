@@ -46,7 +46,7 @@ class UserRequest extends FormRequest
                     'last_name' => 'required|min:3',
                     'email' => 'required|unique:users,email,' . $this->user->id,
                     'password_confirm' => 'sometimes|same:password',
-                    'pic_file' => 'mimes:jpg,jpeg,bmp,png,gif|max:10000'
+                    'pic_file' => 'image|mimes:jpg,jpeg,bmp,png|max:10000'
                 ];
             }
             default:

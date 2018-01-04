@@ -47,10 +47,10 @@
                             </ul>
                         </div>
                     @endif
-                    <form class="form-horizontal" role="form" method="post" action="{{ route('admin.groups.index') }}">
+                    <form class="form-horizontal" role="form" method="post" action="{{ route('admin.groups.store') }}">
                         <!-- CSRF Token -->
 
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                        {{ csrf_field() }}
 
                         <div class="form-group {{ $errors->
                             first('name', 'has-error') }}">

@@ -9,12 +9,15 @@
         @show
     </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    {{--CSRF Token--}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- global css -->
 
     <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet" type="text/css"/>
@@ -43,13 +46,22 @@
                 @include('admin.layouts._notifications')
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        @if(Sentinel::getUser()->pic)
-                            <img src="{!! url('/').'/uploads/users/'.Sentinel::getUser()->pic !!}" alt="img" height="35px" width="35px"
-                                 class="img-circle img-responsive pull-left"/>
-                        @else
-                            <img src="{!! asset('assets/img/authors/avatar3.jpg') !!} " width="35"
-                                 class="img-circle img-responsive pull-left" height="35" alt="riot">
-                        @endif
+                            @if(Sentinel::getUser()->pic)
+                                <img src="{!! url('/').'/uploads/users/'.Sentinel::getUser()->pic !!}" alt="img" height="35px" width="35px"
+                                     class="img-circle img-responsive pull-left"/>
+
+                            @elseif(Sentinel::getUser()->gender === "male")
+                                <img src="{{ asset('assets/images/authors/avatar3.png') }}" alt="img" height="35px" width="35px"
+                                     class="img-circle img-responsive pull-left"/>
+
+                            @elseif(Sentinel::getUser()->gender === "female")
+                                <img src="{{ asset('assets/images/authors/avatar5.png') }}" alt="img" height="35px" width="35px"
+                                     class="img-circle img-responsive pull-left"/>
+
+                            @else
+                                <img src="{{ asset('assets/images/authors/no_avatar.jpg') }}" alt="img" height="35px" width="35px"
+                                     class="img-circle img-responsive pull-left"/>
+                            @endif
                         <div class="riot">
                             <div>
                                 <p class="user_name_max">{{ Sentinel::getUser()->first_name }} {{ Sentinel::getUser()->last_name }}</p>
@@ -63,11 +75,19 @@
                         <!-- User image -->
                         <li class="user-header bg-light-blue">
                             @if(Sentinel::getUser()->pic)
-                                <img src="{!! url('/').'/uploads/users/'.Sentinel::getUser()->pic !!}" alt="img"
-                                     class="img-circle img-bor"/>
+                                <img src="{!! url('/').'/uploads/users/'.Sentinel::getUser()->pic !!}" alt="img" height="35px" width="35px"
+                                     class="img-circle img-responsive pull-left"/>
+
+                            @elseif(Sentinel::getUser()->gender === "male")
+                                <img src="{{ asset('assets/images/authors/avatar3.png') }}" alt="img" height="35px" width="35px"
+                                     class="img-circle img-responsive pull-left"/>
+
+                            @elseif(Sentinel::getUser()->gender === "female")
+                                <img src="{{ asset('assets/images/authors/avatar5.png') }}" alt="img" height="35px" width="35px"
+                                     class="img-circle img-responsive pull-left"/>
                             @else
-                                <img src="{!! asset('assets/img/authors/avatar3.jpg') !!}"
-                                     class="img-responsive img-circle" alt="User Image">
+                                <img src="{{ asset('assets/images/authors/no_avatar.jpg') }}" alt="img" height="35px" width="35px"
+                                     class="img-circle img-responsive pull-left"/>
                             @endif
                             <p class="topprofiletext">{{ Sentinel::getUser()->first_name }} {{ Sentinel::getUser()->last_name }}</p>
                         </li>
@@ -95,7 +115,7 @@
                             </div>
                             <div class="pull-right">
                                 <a href="{{ URL::to('admin/logout') }}">
-                                    <i class="livicon" data-name="sign-out" data-s="18"></i>
+                                    <i class="livicon" data-name="sign-out" data-s="15"></i>
                                     Logout
                                 </a>
                             </div>
@@ -106,9 +126,9 @@
         </div>
     </nav>
 </header>
-<div class="wrapper row-offcanvas row-offcanvas-left">
+<div class="wrapper ">
     <!-- Left side column. contains the logo and sidebar -->
-    <aside class="left-side sidebar-offcanvas">
+    <aside class="left-side ">
         <section class="sidebar ">
             <div class="page-sidebar  sidebar-nav">
                 <div class="nav_icons">

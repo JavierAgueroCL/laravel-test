@@ -8,9 +8,7 @@ $(document).ready(function () {
     });
 
     //re-order columns
-    var table2 = $('#table2').dataTable({
-        responsive: true
-    });
+    var table2 = $('#table2').dataTable();
 
     new $.fn.dataTable.ColReorder(table2);
 

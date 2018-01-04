@@ -50,7 +50,7 @@ Advanced Data Tables
                                 </div>
                             </div>
                             <div class="panel-body table-responsive">
-                                <table class="table table-striped table-bordered" id="table1">
+                                <table class="table table-striped table-bordered" id="table1" width="100%">
                                     <thead>
                                         <tr>
 
@@ -458,7 +458,9 @@ Advanced Data Tables
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <table class="table table-striped table-bordered" id="table2">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered" id="table2"
+                                       width="100%">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -660,6 +662,7 @@ Advanced Data Tables
                                         </tr>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -681,7 +684,7 @@ Advanced Data Tables
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                <table class="table" id="table3">
+                                    <table class="table" id="table3" width="100%">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -899,7 +902,7 @@ Advanced Data Tables
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                  <table class="table table-striped table-hover" id="sample_5">
+                                <table class="table table-striped table-hover" id="sample_5" width="100%">
                                     <thead>
                                         <tr>
                                             <th>Rendering engine</th>
@@ -1233,7 +1236,7 @@ Advanced Data Tables
                                 <div class="tools pull-right"></div>
                             </div>
                             <div class="panel-body table-responsive">
-                                <table class="table table-striped table-bordered" id="inline_edit">
+                                <table class="table table-striped table-bordered" id="inline_edit" width="100%">
                                     <thead>
                                     <tr>
                                         <th>First Name</th>

@@ -112,6 +112,9 @@ background-color: #fff;
 textarea {
     resize : vertical;
 }
+a[target]{
+    color: #146fbd;
+}
 @media (min-width:320px) and (max-width:425px){
     .featured-text.relative-left iframe{
         width:100%;

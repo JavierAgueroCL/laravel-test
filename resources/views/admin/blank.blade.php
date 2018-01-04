@@ -8,6 +8,12 @@ Blank Page
 
 {{-- page level styles --}}
 @section('header_styles')
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/news.css') }}"/>
+    <style>
+        body{
+            overflow: -webkit-paged-x;
+        }
+    </style>
 @stop
 
 {{-- Page content --}}
@@ -26,11 +32,13 @@ Blank Page
                     <li class="active">Blank page</li>
                 </ol>
             </section>
-            <section class="content"></section>
+            <section class="content">
+            </section>
 
         
     @stop
 
 {{-- page level scripts --}}
 @section('footer_scripts')
+
 @stop

@@ -44,7 +44,7 @@ Advanced Datatables
                     </h3>
                 </div>
                 <div class="panel-body table-responsive">
-                    <table class="table table-striped table-bordered" id="table1">
+                    <table class="table table-striped table-bordered width100" id="table1">
                         <thead>
                         <tr>
                             <th>#</th>
@@ -267,7 +267,7 @@ Advanced Datatables
                     </h3>
                 </div>
                 <div class="panel-body table-responsive">
-                    <table class="table table-striped table-bordered" id="table2">
+                    <table class="table table-striped table-bordered width100" id="table2">
                         <thead>
                         <tr>
                             <th></th>
@@ -497,7 +497,7 @@ Advanced Datatables
                         <button type="button" class="toggle-vis btn btn-default" data-column="4">Contact
                         </button>
                     </div>
-                    <table class="table table-striped table-bordered" id="example">
+                    <table class="table table-striped table-bordered width100" id="example">
                         <thead>
                         <tr>
                             <th>Name</th>
@@ -806,7 +806,7 @@ Advanced Datatables
                 </div>
                 <div class="panel-body">
                     <div class="panel-body table-responsive">
-                        <table class="table table-striped table-bordered" id="table4">
+                        <table class="table table-striped table-bordered width100" id="table4">
                             <thead>
                             <tr>
                                 <th>Name</th>

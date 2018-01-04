@@ -76,7 +76,7 @@
                             </form>
                         </div>
                         <div id="register" class="animate form">
-                            <form action="{{ route('signup') }}" autocomplete="on" method="post" role="form" id="register_here">
+                            <form action="{{ route('admin.signup') }}" autocomplete="on" method="post" role="form" id="register_here">
                                 <h3 class="black_bg">
                                     <img src="{{ asset('assets/img/logo.png') }}" alt="josh logo">
                                     <br>Sign Up</h3>

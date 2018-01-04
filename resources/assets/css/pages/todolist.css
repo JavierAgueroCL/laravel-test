@@ -107,3 +107,6 @@ input[type=checkbox] {
     padding-top : 5px;
     text-align  : right;
 }
+.todotext input,.date input{
+    margin-bottom: 5px;
+}

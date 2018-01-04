@@ -12,7 +12,7 @@
     <link href="{{ asset('assets/vendors/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/vendors/bootstrap-tagsinput/css/bootstrap-tagsinput.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/pages/blog.css') }}" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}">
     <!--end of page level css-->
 @stop
 
@@ -40,12 +40,7 @@
     <div class="row">
         <div class="the-box no-border">
             <!-- errors -->
-            {{--<div class="has-error">--}}
-                {{--{!! $errors->first('title', '<span class="help-block">:message</span>') !!}--}}
-                {{--{!! $errors->first('content', '<span class="help-block">:message</span>') !!}--}}
-                {{--{!! $errors->first('blog_category_id', '<span class="help-block">:message</span>') !!}--}}
-            {{--</div>--}}
-            {!! Form::open(array('url' => URL::to('admin/blog/create'), 'method' => 'post', 'class' => 'bf', 'files'=> true)) !!}
+            {!! Form::open(array('url' => URL::to('admin/blog'), 'method' => 'post', 'class' => 'bf', 'files'=> true)) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                  <div class="row">
                     <div class="col-sm-8">
@@ -69,16 +64,24 @@
                         <div class="form-group">
                             {!! Form::text('tags', null, array('class' => 'form-control input-lg', 'data-role'=>"tagsinput", 'placeholder'=>trans('blog/form.tags'))) !!}
                         </div>
+                        <label>@lang('blog/form.lb-featured-img')</label>
                         <div class="form-group">
-                            <label>@lang('blog/form.lb-featured-img')</label>
-                            <div class="fileupload fileupload-new" data-provides="fileupload">
-                                <span class="btn btn-primary btn-file">
-                                    <span class="fileupload-new">@lang('blog/form.select-file')</span>
-                                    <span class="fileupload-exists">@lang('blog/form.change')</span>
-                                     {!! Form::file('image', null, array('class' => 'form-control','accept'=>"image/*")) !!}
-                                </span>
-                                <span class="fileupload-preview"></span>
-                                <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+
+
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="max-width: 200px; max-height: 200px;">
+                                    <img src="{{ asset('assets/images/authors/no_avatar.jpg') }}" alt="..."
+                                         class="img-responsive"/>
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                            <span class="btn btn-primary btn-file">
+                                                <span class="fileinput-new">Select image</span>
+                                                <span class="fileinput-exists">Change</span>
+                                                <input type="file" name="image" id="pic" accept="image/*" />
+                                            </span>
+                                    <span class="btn btn-primary fileinput-exists" data-dismiss="fileinput">Remove</span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -102,5 +105,6 @@
 <script src="{{ asset('assets/vendors/summernote/summernote.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/vendors/select2/js/select2.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/vendors/bootstrap-tagsinput/js/bootstrap-tagsinput.js') }}" type="text/javascript" ></script>
+<script type="text/javascript" src="{{ asset('assets/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}"></script>
 <script src="{{ asset('assets/js/pages/add_newblog.js') }}" type="text/javascript"></script>
 @stop

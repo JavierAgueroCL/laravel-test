@@ -2,14 +2,14 @@
 
 namespace $NAMESPACE_CONTROLLER$;
 
-use $NAMESPACE_REQUEST$;
+use App\Http\Requests;
 use $NAMESPACE_REQUEST$\Create$MODEL_NAME$Request;
 use $NAMESPACE_REQUEST$\Update$MODEL_NAME$Request;
 use $NAMESPACE_REPOSITORY$\$MODEL_NAME$Repository;
-use $NAMESPACE_CONTROLLER$\AppBaseController as InfyOmBaseController;
+use App\Http\Controllers\AppBaseController as InfyOmBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
-use App\Models\$MODEL_NAME$;
+use $NAMESPACE_MODEL$\$MODEL_NAME$;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -146,7 +146,7 @@ class $MODEL_NAME$Controller extends InfyOmBaseController
           $error = '';
           $model = '';
           $confirm_route =  route('$VIEW_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.delete',['id'=>$id]);
-          return View('$VIEW_PREFIX$layouts/modal_confirmation', compact('error','model', 'confirm_route'));
+          return View('admin.layouts/modal_confirmation', compact('error','model', 'confirm_route'));
 
       }
 

@@ -63,8 +63,9 @@ Custom Data Tables
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel-body table-responsive">
-                                <table class="table table-bordered " id="table1">
+                            <div class="panel-body ">
+                                <div class="table-responsive">
+                                <table class="table table-bordered width100" id="table1" >
                                     <thead>
                                     <tr class="filters">
                                         <th>ID</th>
@@ -78,6 +79,7 @@ Custom Data Tables
                                     <tbody>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -94,20 +96,24 @@ Custom Data Tables
                                 </div>
                             </div>
                             <div class="row">
-                            <div class="col-md-6 col-md-offset-4">
-                                <label class="control-label mar150">Age :</label><br>
+                                <div class="col-md-12 text-center">
+                                <form>
+                                    <label class="control-label">Age :</label><br>
                                     <label class="radio-inline">
-                                        &nbsp;<input type="radio" class="custom-radio" name="radioAge[]" id="radio_one" value="35" >&nbsp; Below 35</label>
+                                        &nbsp;<input type="radio" class="custom-radio" name="radioAge[]" id="radio_one" value="35" dusk="radio11">&nbsp; Below 35</label>
                                     <label class="radio-inline">
-                                        <input type="radio" class="custom-radio" name="radioAge[]" id="radio_two" value="50">&nbsp;Below 50</label>
+                                        <input type="radio" class="custom-radio" name="radioAge[]" id="radio_two" value="50" dusk="radio12">&nbsp;Below 50</label>
                                     <label class="radio-inline">
-                                        <input type="radio"  class="custom-radio" name="radioAge[]" id="radio_three" value="100">&nbsp; Above 50</label>
-                                <label class="radio-inline">
-                                    <input type="radio"  class="custom-radio" name="radioAge[]" id="radio_four" value="all">&nbsp; All</label>
+                                        <input type="radio" class="custom-radio" name="radioAge[]" id="radio_three" value="100" dusk="radio13">&nbsp; Above 50</label>
+                                    <label class="radio-inline">
+                                        <input type="radio" checked class="custom-radio" name="radioAge[]"
+                                               id="radio_four" value="all" dusk="radio14">&nbsp; All</label>
+                                </form>
                             </div>
                                 </div>
-                            <div class="panel-body table-responsive">
-                                <table class="table table-bordered " id="table2">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                <table class="table table-bordered width100" id="table2">
                                     <thead>
                                     <tr class="filters">
                                         <th>ID</th>
@@ -121,6 +127,7 @@ Custom Data Tables
                                     <tbody>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -142,8 +149,9 @@ Custom Data Tables
                                 {!! Form::select('professions', $professions , null,['class' => 'form-control', 'id' => 'professions', 'placeholder' => 'Please Select One...']) !!}
                             </div>
                             </div>
-                            <div class="panel-body table-responsive">
-                                <table class="table table-bordered " id="table3">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                <table class="table table-bordered width100" id="table3" >
                                     <thead>
                                     <tr class="filters">
                                         <th>ID</th>
@@ -157,6 +165,7 @@ Custom Data Tables
                                     <tbody>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -165,6 +174,13 @@ Custom Data Tables
                     <div class="col-lg-12">
                         <div class="panel panel-primary filterable">
                             <div class="panel-heading clearfix" >
+                                <div class="panel-title pull-left">
+                                    <div class="caption">
+                                        <i class="livicon" data-name="camera" data-size="16" data-loop="true"
+                                           data-c="#fff" data-hc="white"></i>
+                                        Button Filter Table
+                                    </div>
+                                </div>
                                 <div class="pull-right" data-toggle="buttons">
                                     <label class="btn btn-default tag"  id="buttonMale">
                                         <input type="radio" name="tags" value="button1" id="buttonMale" autocomplete="off" data-value="male"> Male
@@ -176,15 +192,11 @@ Custom Data Tables
                                         <input type="radio" name="tags" value="button3" id="buttonAll" autocomplete="off" data-value="all"> All
                                     </label>
                                 </div>
-                                <div class="panel-title pull-left">
-                                    <div class="caption">
-                                        <i class="livicon" data-name="camera" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                                        Button Filter Table
-                                    </div>
-                                </div>
+
                             </div>
-                            <div class="panel-body table-responsive">
-                                <table class="table table-striped" id="table4">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                <table class="table table-striped width100" id="table4" >
                                     <thead>
                                     <tr class="filters">
                                         <th>ID</th>
@@ -199,76 +211,84 @@ Custom Data Tables
                                     <tbody>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-primary filterable">
-                            <div class="panel-heading clearfix" >
-                                <div class="pull-right" data-toggle="buttons">
-                                    <label class="btn btn-default tag"  id="buttonMale2">
-                                        <input type="radio" name="tags" value="button1" id="buttonMale2" autocomplete="off" data-value="male"> Male
-                                    </label>
-                                    <label class="btn btn-default tag"  id="buttonFemale2">
-                                        <input type="radio" name="tags" value="button2" id="buttonFemale2" autocomplete="off" data-value="female"> Female
-                                    </label>
-                                    <label class="btn btn-default tag"  id="buttonAll2">
-                                        <input type="radio" name="tags" value="button3" id="buttonAll2" autocomplete="off" data-value="all"> All
-                                    </label>
-                                </div>
-                                <div class="panel-title pull-left">
-                                    <div class="caption">
-                                        <i class="livicon" data-name="camera" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                                        All Custom Filters Table
+                    <form action="">
+                        <div class="col-lg-12">
+                            <div class="panel panel-primary filterable">
+                                <div class="panel-heading clearfix" >
+                                    <div class="panel-title pull-left">
+                                        <div class="caption">
+                                            <i class="livicon" data-name="camera" data-size="16" data-loop="true"
+                                               data-c="#fff" data-hc="white"></i>
+                                            All Custom Filters Table
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label class="control-label">ID Range :</label><br>
-                                    <div> <b class="margin_right15">{{$min_id}}</b>
-                                        <input id="id_range2" type="text" data-slider-id='id_range' class="slider form-control" data-slider-handle="square" value="" data-slider-min="{{$min_id}}" data-slider-max="{{$max_id}}" data-slider-step="1" data-slider-value="[{{$min_id}},{{$max_id}}]"/> <b style="margin-left: 15px;">@if(!empty($max_count)){{$max_id}} @else 10 @endif</b>
+                                    <div class="pull-right" data-toggle="buttons">
+                                        <label class="btn btn-default tag" id="buttonMale2">
+                                            <input type="radio" name="tags" value="button1" id="buttonMale2" autocomplete="off" data-value="male"> Male
+                                        </label>
+                                        <label class="btn btn-default tag" id="buttonFemale2">
+                                            <input type="radio" name="tags" value="button2" id="buttonFemale2" autocomplete="off" data-value="female"> Female
+                                        </label>
+                                        <label class="btn btn-default tag" id="buttonAll2">
+                                            <input type="radio" name="tags" value="button3" id="buttonAll2" autocomplete="off" data-value="all"> All
+                                        </label>
                                     </div>
-                                </div>
 
-                                <div class="col-md-5">
-                                    <label class="control-label mar150">Age :</label><br>
-                                    <label class="radio-inline">
-                                        &nbsp;<input type="radio" class="custom-radio2" name="radioAge[]" id="radio_one" value="35" >&nbsp; Below 35</label>
-                                    <label class="radio-inline">
-                                        <input type="radio" class="custom-radio2" name="radioAge[]" id="radio_two" value="50">&nbsp;Below 50</label>
-                                    <label class="radio-inline">
-                                        <input type="radio"  class="custom-radio2" name="radioAge[]" id="radio_three" value="100">&nbsp; Above 50</label>
-                                    <label class="radio-inline">
-                                        <input type="radio"  class="custom-radio2" name="radioAge[]" id="radio_four" value="all">&nbsp; All</label>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="control-label">ID Range :</label><br>
+                                        <div> <b class="margin_right15">{{$min_id}}</b>
+                                            <input id="id_range2" type="text" data-slider-id='id_range' class="slider form-control" dusk="slide_range" data-slider-handle="square" value="" data-slider-min="{{$min_id}}" data-slider-max="{{$max_id}}" data-slider-step="1" data-slider-value="[{{$min_id}},{{$max_id}}]"/> <b style="margin-left: 15px;">@if(!empty($max_count)){{$max_id}} @else 10 @endif</b>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <label class="control-label mar150">Age :</label><br>
+                                        <label class="radio-inline">
+                                            &nbsp;<input type="radio" class="custom-radio2" name="radioAge[]" id="custom_radio_one" value="35" dusk="radio21">&nbsp; Below 35</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" class="custom-radio2" name="radioAge[]" id="custom_radio_two" value="50" dusk="radio22">&nbsp;Below 50</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" class="custom-radio2" name="radioAge[]" id="custom_radio_three" value="100" dusk="radio23">&nbsp; Above 50</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" checked class="custom-radio2" name="radioAge[]"
+                                                   id="radio_four" value="all" dusk="radio24">&nbsp; All</label>
+                                    </div>
 
                                     <div class="col-md-3">
                                         <label class="control-label">Profession :</label>
                                         {!! Form::select('professions', $professions, null,['class' => 'form-control', 'id' => 'professions2', 'placeholder' => 'Please Select One...']) !!}
                                     </div>
-                            </div>
-                            <div class="panel-body table-responsive">
-                                <table class="table table-striped" id="table5">
-                                    <thead>
-                                    <tr class="filters">
-                                        <th>ID</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>User E-mail</th>
-                                        <th>Job</th>
-                                        <th>Age</th>
-                                        <th>Gender</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                    <table class="table table-striped width100" id="table5" >
+                                        <thead>
+                                        <tr class="filters">
+                                            <th>ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>User E-mail</th>
+                                            <th>Job</th>
+                                            <th>Age</th>
+                                            <th>Gender</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <!-- row-->
             </section>
@@ -361,7 +381,7 @@ Custom Data Tables
                     $(this).updateLivicon();
                 });
             } );
-            $('input[type="radio"]').on('ifChanged', function(event){
+            $("input[type='radio'].custom-radio").on('ifChanged', function (event) {
                 ageRadio =  $(this).val();
                 table2.draw();
             });

@@ -140,6 +140,7 @@
                     </li>
                     <li {!! (Request::is('contact') ? 'class="active"' : '') !!}><a href="{{ URL::to('contact') }}">Contact</a>
                     </li>
+
                     {{--based on anyone login or not display menu items--}}
                     @if(Sentinel::guest())
                         <li><a href="{{ URL::to('login') }}">Login</a>

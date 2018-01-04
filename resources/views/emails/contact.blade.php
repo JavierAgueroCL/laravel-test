@@ -1,16 +1,28 @@
-@extends('emails/layouts/default')
 
-@section('content')
-    <p>Hello ,</p>
 
-    <p>We have received a new contact mail.</p>
+@component('mail::layout')
+    {{-- Header --}}
+    @slot('header')
+        @component('mail::header', ['url' => config('app.url')])
+           Josh Admin
+        @endcomponent
+    @endslot
 
-    <p>The provided details are:</p>
+    {{-- Body --}}
+# Hello
 
-    <p>Name: {{ $data['contact-name'] }}</p>
+We have received a new contact mail.<br />
+**Name :** {{ $data->contact_name }}<br />
+**Email :** {{ $data->contact_email }}<br />
+**Message :** {{ $data->contact_msg }}
 
-    <p>Email: {{ $data['contact-email'] }}</p>
 
-    <p>Message: {{ $data['contact-msg'] }}  </p>
+Thanks,
 
-@stop
+    {{-- Footer --}}
+    @slot('footer')
+        @component('mail::footer')
+           &copy; 2017 All Copy right received
+        @endcomponent
+    @endslot
+@endcomponent

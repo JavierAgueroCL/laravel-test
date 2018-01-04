@@ -62,7 +62,7 @@
                                 <td>{{ $blog->comments->count() }}</td>
                                 <td>{{ $blog->created_at->diffForHumans() }}</td>
                                 <td>
-                                    <a href="{{ URL::to('admin/blog/' . $blog->id . '/show' ) }}"><i class="livicon"
+                                    <a href="{{ URL::to('admin/blog/' . $blog->id ) }}"><i class="livicon"
                                                                                                      data-name="info"
                                                                                                      data-size="18"
                                                                                                      data-loop="true"

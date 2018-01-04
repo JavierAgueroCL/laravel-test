@@ -52,11 +52,9 @@
                         <div class="row">
 
                             <div class="col-md-12">
-                                <form id="commentForm" action="{{ route('admin.users.update', $user) }}"
-                                      method="POST" id="wizard-validation" enctype="multipart/form-data" class="form-horizontal">
-                                    <!-- CSRF Token -->
-                                    <input type="hidden" name="_method" value="PATCH"/>
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
+                                {!! Form::model($user, ['url' => URL::to('admin/users/'. $user->id.''), 'method' => 'put', 'class' => 'form-horizontal','id'=>'commentForm', 'enctype'=>'multipart/form-data','files'=> true]) !!}
+                                    {{ csrf_field() }}
 
                                     <div id="rootwizard">
                                         <ul>
@@ -95,8 +93,9 @@
                                                         <input id="email" name="email" placeholder="E-Mail" type="text"
                                                                class="form-control required email"
                                                                value="{!! old('email', $user->email) !!}"/>
-                                                    </div>
+
                                                     {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
+                                                    </div>
                                                 </div>
 
                                                 <div class="form-group {{ $errors->first('password', 'has-error') }}">
@@ -115,8 +114,9 @@
                                                         <input id="password_confirm" name="password_confirm" type="password"
                                                                placeholder="Confirm Password " class="form-control"
                                                                value="{!! old('password_confirm') !!}"/>
+                                                        {!! $errors->first('password_confirm', '<span class="help-block">:message</span>') !!}
                                                     </div>
-                                                    {!! $errors->first('password_confirm', '<span class="help-block">:message</span>') !!}
+
                                                 </div>
 
                                             </div>
@@ -138,9 +138,17 @@
                                                         <div class="fileinput fileinput-new" data-provides="fileinput">
                                                             <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
                                                                 @if($user->pic)
-                                                                    <img src="{!! url('/').'/uploads/users/'.$user->pic !!}" alt="profile pic">
+                                                                    <img src="{!! url('/').'/uploads/users/'.$user->pic !!}" alt="img"
+                                                                         class="img-responsive"/>
+                                                                @elseif($user->gender === "male")
+                                                                    <img src="{{ asset('assets/images/authors/avatar3.png') }}" alt="..."
+                                                                         class="img-responsive"/>
+                                                                @elseif($user->gender === "female")
+                                                                    <img src="{{ asset('assets/images/authors/avatar5.png') }}" alt="..."
+                                                                         class="img-responsive"/>
                                                                 @else
-                                                                    <img src="http://placehold.it/200x200" alt="profile pic">
+                                                                    <img src="{{ asset('assets/images/authors/no_avatar.jpg') }}" alt="..."
+                                                                         class="img-responsive"/>
                                                                 @endif
                                                             </div>
                                                             <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 200px;"></div>
@@ -258,6 +266,7 @@
                                         </div>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                         <!--main content end-->

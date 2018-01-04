@@ -12,15 +12,19 @@
     <link href="{{ asset('assets/css/pages/form2.css') }}" rel="stylesheet"/>
     <link href="{{ asset('assets/css/pages/form3.css') }}" rel="stylesheet"/>
     <link href="{{ asset('assets/vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('assets/vendors/intl-tel-input/intlTelInput.css') }}" rel="stylesheet"/>
     <link href="{{ asset('assets/vendors/bootstrapvalidator/css/bootstrapValidator.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('assets/vendors/iCheck/css/all.css') }}"  rel="stylesheet" type="text/css" />
     <!-- include the BotDetect layout stylesheet -->
-    <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css"  rel="stylesheet">
+
     <style>
         .iti-flag {
             background-image: url("{{ asset('assets/vendors/intl-tel-input/flags.png') }}");
         }
+        @media (max-width: 992px){
+            .form-horizontal .control-label {
+                text-align: left;
+            }
+            }
     </style>
 @stop
 
@@ -411,11 +415,11 @@
                     <div class="panel-body">
                         <form id="tryitForm" class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-md-3 control-label hidden-xs">Full name</label>
-                                <div class="col-md-4 col-xs-6 colsm-6">
+                                <label class="col-md-3 col-xs-12 control-label">Full name</label>
+                                <div class="col-md-4 col-xs-6 col-sm-6">
                                     <input type="text" class="form-control" name="firstName" placeholder="Enter First Name" />
                                 </div>
-                                <div class="col-md-4 col-xs-6 colsm-6">
+                                <div class="col-md-4 col-xs-6 col-sm-6">
                                     <input type="text" class="form-control" name="lastName" placeholder="Enter Last Name" />
                                 </div>
                             </div>
@@ -454,44 +458,6 @@
                     </div>
                 </div>
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#fff"
-                               data-hc="white"></i>
-                            Phone and Captcha Validation
-                        </h3>
-                        <span class="pull-right clickable">
-                                        <i class="glyphicon glyphicon-chevron-up"></i>
-                                    </span>
-                    </div>
-
-                    <div class="panel-body">
-                        <form method="post" id="capch_form" action="{{ route('secureImage') }}" class="form-horizontal">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                            <div class="row">
-                                <div class="form-group col-sm-8">
-                                    <input type="tel" class="form-control" id="phone" name="txtphone">
-                                    <br>
-                                    <span id="valid-msg" class="hide">✓ Valid</span>
-                                    <span id="error-msg" class="hide">Invalid number</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-sm-6">
-
-                                    {!! captcha_image_html('ExampleCaptcha') !!}
-                                    <input type="text" id="CaptchaCode" class="form-control mar-10" name="CaptchaCode" autocomplete="off">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group mar-10">
-                                <input type="submit"  class="btn btn-primary captcha" id="sbtn">
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
         <!--row ends-->
@@ -505,13 +471,6 @@
             type="text/javascript"></script>
     <script src="{{ asset('assets/vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}"
             type="text/javascript"></script>
-    <script src="{{ asset('assets/vendors/intl-tel-input/intlTelInput.js') }}"
-            type="text/javascript"></script>
     <script src="{{ asset('assets/vendors/iCheck/js/icheck.js') }}"></script>
-    {{--<script src="{{ asset('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js') }}"></script>--}}
     <script src="{{ asset('assets/js/pages/validation.js') }}" type="text/javascript"></script>
-    {{-- <script>
-         $("#phone").intlTelInput();
-     </script>
-     --}}
 @stop

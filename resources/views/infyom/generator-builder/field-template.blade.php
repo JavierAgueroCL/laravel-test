@@ -2,7 +2,6 @@
     <input type="text" style="width: 100%" required class="form-control txtFieldName"/>
 </td>
 <td style="vertical-align: middle">
-    {{--<input type="text" class="form-control txtdbType" required/>--}}
     <select class="form-control txtdbType">
               <option value="increments">INCREMENTS</option>
               <option value="bigIncrements">BIG INCREMENTS</option>
@@ -26,8 +25,6 @@
               <option value="enum">ENUM</option>
               <option disabled="disabled">-</option>
               <option value="date">DATE</option>
-        {{--      <option value="datetime">DATETIME</option>--}}
-        {{--      <option value="time">TIME</option>--}}
               <option value="timestamp">TIMESTAMP</option>
               <option disabled="disabled">-</option>
               <option value="binary">BINARY</option>
@@ -35,11 +32,9 @@
 
 </td>
 <td style="vertical-align: middle">
-    {{--<input type="text" class="form-control txtValidation"/>--}}
     <select class="form-control txtValidation" multiple name="txtValidation" style="width:100%">
         <option value="required" class="required">Required</option>
         <option value="email" class="email">Email</option>
-        {{--<option value="image">Image</option>--}}
         <option value="date" class="date">Date</option>
         <option value="integer" class="integer">Integer</option>
         <option value="boolean" class="boolean">Boolean</option>
@@ -97,9 +92,9 @@
     </div>
 </td>
 <td style="text-align: center;vertical-align: middle">
-    <i onclick="removeItem(this)" class="remove fa fa-trash-o"
-       style="cursor: pointer;font-size: 20px;color: #EF6F6C"></i>
+    <i onclick="removeItem(this)" class="livicon remove" data-name="remove-alt"
+       data-size="18" data-loop="true" data-c="#f56954"
+       data-hc="#f56954" style="cursor:pointer"
+    ></i>
 </td>
-{{--<script type="text/javascript">--}}
-    {{--$('.txtValidation').select2();--}}
-{{--</script>--}}
+

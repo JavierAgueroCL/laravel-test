@@ -106,10 +106,10 @@ Buttons Builder
                                         <div id="icons">
                                             <p class="lead">Icon :</p>
                                             <div class="row">
-                                                <div class="col-md-2">Search icons :</div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-2 m-b-5">Search icons :</div>
+                                                <div class="col-md-4 m-b-5">
                                                     <input id="search" type="text" autocomplete="off" placeholder="Search icon" class="typeahead form-control"></div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 m-b-5">
                                                     Icon position :
                                                     <div id="icon-position" class="btn-group">
                                                         <button class="btn btn-default" value="left" type="button">

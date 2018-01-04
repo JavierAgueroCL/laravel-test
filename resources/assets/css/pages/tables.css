@@ -22,9 +22,7 @@ Responsive & Scrollable Tables
     color            : #333333;
     background-color : #e5e5e5;
 }
-.table {
-    width : 100% !important;
-}
+
 .table-scrollable {
     width      : 100%;
     overflow-x : auto;
@@ -82,7 +80,7 @@ Default table
 Responsive Flip Scroll Tables
 ***/
 .flip-scroll table {
-    width : 100%;
+    width: 100% !important;
 }
 @media only screen and (max-width : 768px) {
     /* 768px */
@@ -705,6 +703,19 @@ tr.shown td.details-control {
 }
 body{
     padding: 0 !important;
+}
+table{
+    width:100%;
+}
+#table2 thead th:first-child{
+    width:10px !important;;
+}
+.disp_image{
+    height: 65px;
+    width: 50px;
+}
+.width100{
+    width:100% !important;
 }
 @media (min-width:320px) and (max-width:455px){
     .collapsed{

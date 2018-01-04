@@ -24,6 +24,25 @@ class DatatablesSeeder extends Seeder
             else{
                 $gender='Female';
             }
+
+            if(rand(0,5)==0) {
+                $country='Australia';
+            }
+            else if(rand(0,5)==1){
+                $country='Canada';
+            }
+            else if(rand(0,5)==2){
+                $country='Newzealand';
+            }
+            else if(rand(0,5)==3){
+                $country='bangladesh';
+            }
+            else if(rand(0,5)==4){
+                $country='America';
+            }else{
+                $country='India';
+            }
+
                 Datatable::create([
                     'firstname' => $faker->unique()->firstName,
                     'lastname' => $faker->unique()->lastName,
@@ -32,7 +51,10 @@ class DatatablesSeeder extends Seeder
                     'gender' => $gender,
                     'age' => $faker->numberBetween(20, 80),
                     'points' => $faker->numberBetween(0, 1000),
-                    'notes' => $faker->text(100)
+                    'notes' => $faker->text(100),
+                    'country' => $country,
+                    'sale_date' => $faker->dateTimeBetween('2017-09-15','2017-10-20')
+
                 ]);
 
         }

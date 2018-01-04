@@ -37,7 +37,7 @@
 @section('content')
 
     <section class="content-header">
-        <h1>Multiple File Uplaod</h1>
+        <h1>Multiple File Upload</h1>
         <ol class="breadcrumb">
             <li>
                 <a href="{{ route('admin.dashboard') }}">
@@ -56,7 +56,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <i class="livicon" data-name="clock" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                            Multiple File Uplaod
+                            Multiple File Upload
                         </h4>
                     </div>
                     <div class="panel-body">

@@ -1,13 +1,27 @@
-@extends('emails/layouts/default')
 
-@section('content')
-<p>Hello {!! $user->first_name !!},</p>
+@component('mail::layout')
+    {{-- Header --}}
+    @slot('header')
+        @component('mail::header', ['url' => config('app.url')])
+            Josh Admin
+        @endcomponent
+    @endslot
 
-<p>Welcome to SiteNameHere! Please click on the following link to confirm your SiteNameHere account:</p>
+    {{-- Body --}}
+# Hello  {!! $user->user_name !!},<br>
 
-<p><a href="{!! $activationUrl !!}">{!! $activationUrl !!}</a></p>
+Welcome to SiteNameHere! Please click on the following link to confirm your SiteNameHere account:<br />
+@component('mail::button', ['url' =>  $user->activationUrl  ])
+    Activate Account
+@endcomponent
 
-<p>Best regards,</p>
 
-<p>@lang('general.site_name') Team</p>
-@stop
+    Thanks,
+
+    {{-- Footer --}}
+    @slot('footer')
+    @component('mail::footer')
+    &copy; 2017 All Copy right received
+@endcomponent
+@endslot
+@endcomponent

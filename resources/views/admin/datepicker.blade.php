@@ -37,11 +37,81 @@ Date Picker
 <section class="content">
     <!--main content-->
     <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="livicon" data-name="bell" data-size="16" data-loop="true" data-c="#fff"
+                           data-hc="white"></i> Date Time Picker
+                    </h3>
+                    <span class="pull-right clickable">
+                                    <i class="glyphicon glyphicon-chevron-up"></i>
+                                </span>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Default:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="livicon" data-name="laptop" data-size="16" data-c="#555555"
+                                           data-hc="#555555" data-loop="true"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="datetime1"/>
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <div class="form-group">
+                                <label>Custom Format:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="livicon" data-name="laptop" data-size="16" data-c="#555555"
+                                           data-hc="#555555" data-loop="true"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="datetime2"/>
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <div class="form-group">
+                                <label>Custom View:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="livicon" data-name="laptop" data-size="16" data-c="#555555"
+                                           data-hc="#555555" data-loop="true"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="datetime3"/>
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <div class="form-group">
+                                <label>Min View:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="livicon" data-name="laptop" data-size="16" data-c="#555555"
+                                           data-hc="#555555" data-loop="true"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="datetime4"/>
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Inline View:</label>
+                            <div id="datetime5"></div>
+                            <!-- /.input group -->
+                        </div>
+                    </div>
+                </div>
+                <!--ends-->
+            </div>
+        </div>
         <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <i class="livicon" data-name="magic" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> Date Range Picker
+                        <i class="livicon" data-name="magic" data-size="16" data-loop="true" data-c="#fff"
+                           data-hc="white"></i> Date Range Picker
                     </h3>
                                 <span class="pull-right clickable">
                                     <i class="glyphicon glyphicon-chevron-up"></i>
@@ -56,9 +126,10 @@ Date Picker
                             </label>
                             <div class="input-group">
                                 <div class="input-group-addon">
-                                    <i class="livicon" data-name="calendar" data-size="16" data-c="#555555" data-hc="#555555" data-loop="true"></i>
+                                    <i class="livicon" data-name="calendar" data-size="16" data-c="#555555"
+                                       data-hc="#555555" data-loop="true"></i>
                                 </div>
-                                <input type="text" class="form-control" id="daterange1" />
+                                <input type="text" class="form-control" id="daterange1"/>
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -69,9 +140,10 @@ Date Picker
                             </label>
                             <div class="input-group">
                                 <div class="input-group-addon">
-                                    <i class="livicon" data-name="phone" data-size="16" data-c="#555555" data-hc="#555555" data-loop="true"></i>
+                                    <i class="livicon" data-name="phone" data-size="16" data-c="#555555"
+                                       data-hc="#555555" data-loop="true"></i>
                                 </div>
-                                <input type="text" class="form-control" id="daterange2" />
+                                <input type="text" class="form-control" id="daterange2"/>
                             </div>
                         </div>
                         <!-- /.input group -->
@@ -83,9 +155,10 @@ Date Picker
                             </label>
                             <div class="input-group">
                                 <div class="input-group-addon">
-                                    <i class="livicon" data-name="phone" data-size="16" data-c="#555555" data-hc="#555555" data-loop="true"></i>
+                                    <i class="livicon" data-name="phone" data-size="16" data-c="#555555"
+                                       data-hc="#555555" data-loop="true"></i>
                                 </div>
-                                <input type="text" class="form-control" id="daterange3" />
+                                <input type="text" class="form-control" id="daterange3"/>
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -95,9 +168,10 @@ Date Picker
                             <label>Single Date Picker:</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
-                                    <i class="livicon" data-name="laptop" data-size="16" data-c="#555555" data-hc="#555555" data-loop="true"></i>
+                                    <i class="livicon" data-name="laptop" data-size="16" data-c="#555555"
+                                       data-hc="#555555" data-loop="true"></i>
                                 </div>
-                                <input type="text" class="form-control" id="rangepicker4" />
+                                <input type="text" class="form-control" id="rangepicker4"/>
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -106,70 +180,12 @@ Date Picker
                 </div>
             </div>
             <!--select2 starts-->
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        <i class="livicon" data-name="bell" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> Date Time Picker
-                    </h3>
-                                <span class="pull-right clickable">
-                                    <i class="glyphicon glyphicon-chevron-up"></i>
-                                </span>
-                </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label>Default:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="livicon" data-name="laptop" data-size="16" data-c="#555555" data-hc="#555555" data-loop="true"></i>
-                            </div>
-                            <input type="text" class="form-control" id="datetime1" />
-                        </div>
-                        <!-- /.input group -->
-                    </div>
-                    <div class="form-group">
-                        <label>Custom Format:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="livicon" data-name="laptop" data-size="16" data-c="#555555" data-hc="#555555" data-loop="true"></i>
-                            </div>
-                            <input type="text" class="form-control" id="datetime2" />
-                        </div>
-                        <!-- /.input group -->
-                    </div>
-                    <div class="form-group">
-                        <label>Custom View:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="livicon" data-name="laptop" data-size="16" data-c="#555555" data-hc="#555555" data-loop="true"></i>
-                            </div>
-                            <input type="text" class="form-control" id="datetime3" />
-                        </div>
-                        <!-- /.input group -->
-                    </div>
-                    <div class="form-group">
-                        <label>Min View:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="livicon" data-name="laptop" data-size="16" data-c="#555555" data-hc="#555555" data-loop="true"></i>
-                            </div>
-                            <input type="text" class="form-control" id="datetime4" />
-                        </div>
-                        <!-- /.input group -->
-                    </div>
-                    <label>Inline View:</label>
-                    <div id="datetime5"></div>
-                    <!-- /.input group -->
-                </div>
-                <!--ends-->
-            </div>
-        </div>
-        <div class="col-md-6">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <i class="livicon" data-name="magic" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> Clock Picker
                     </h3>
-                                <span class="pull-right clickable">
+                    <span class="pull-right clickable">
                                     <i class="glyphicon glyphicon-chevron-up"></i>
                                 </span>
                 </div>
@@ -214,6 +230,10 @@ Date Picker
                     </div>
                 </div>
             </div>
+
+        </div>
+        <div class="col-md-6">
+
             <!--select2 starts-->
             <div class="panel panel-warning">
                 <div class="panel-heading">

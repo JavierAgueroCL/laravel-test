@@ -11,7 +11,9 @@
     <link href="{{ asset('assets/vendors/summernote/summernote.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/vendors/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/vendors/bootstrap-tagsinput/css/bootstrap-tagsinput.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}">
     <link href="{{ asset('assets/css/pages/blog.css') }}" rel="stylesheet" type="text/css">
+
     <!--end of page level css-->
 @stop
 
@@ -38,7 +40,7 @@
     <!--main content-->
     <div class="row">
         <div class="the-box no-border">
-           {!! Form::model($blog, array('url' => URL::to('admin/blog/' . $blog->id.'/edit'), 'method' => 'post', 'class' => 'bf', 'files'=> true)) !!}
+           {!! Form::model($blog, ['url' => URL::to('admin/blog/' . $blog->id), 'method' => 'put', 'class' => 'bf', 'files'=> true]) !!}
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="form-group {{ $errors->first('title', 'has-error') }}">
@@ -54,32 +56,40 @@
                     <div class="col-sm-4">
                         <div class="form-group {{ $errors->first('blog_category_id', 'has-error') }}">
                             <label for="blog_category" class="">Blog Category</label>
-                            {{--{!! Form::label('blog_category_id', trans('blog/form.ll-postcategory')) !!}--}}
                             {!! Form::select('blog_category_id',$blogcategory ,null, array('class' => 'form-control select2','id'=>'blog_category', 'placeholder'=>trans('blog/form.select-category')))!!}
                             <span class="help-block">{{ $errors->first('blog_category_id', ':message') }}</span>
                         </div>
                         <div class="form-group">
                             {!! Form::text('tags', $blog->tagList, array('class' => 'form-control input-lg', 'data-role'=>"tagsinput", 'placeholder'=>trans('blog/form.tags')))!!}
                         </div>
+                        <label>@lang('blog/form.lb-featured-img')</label>
                         <div class="form-group">
-                            <label>@lang('blog/form.lb-featured-img')</label>
-                            <div class="fileupload fileupload-new" data-provides="fileupload">
-                                <span class="btn btn-primary btn-file">
-                                    <span class="fileupload-new">@lang('blog/form.select-file')</span>
-                                    <span class="fileupload-exists">@lang('blog/form.change')</span>
-                                     {!! Form::file('image', null, array('class' => 'form-control')) !!}
-                                </span>
-                                @if(!empty($blog->image))
-                                    <span class="fileupload-preview">
+
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="max-width: 200px; max-height: 200px;">
+                                    @if(!empty($blog->image))
+
                                         <img src="{{URL::to('uploads/blog/'.$blog->image)}}" class="img-responsive" alt="Image">
-                                    </span>
-                                @endif
-                                <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                                    @else
+                                        <img src="{{ asset('assets/images/authors/no_avatar.jpg') }}" alt="..."
+                                             class="img-responsive"/>
+                                    @endif
+
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                            <span class="btn btn-primary btn-file">
+                                                <span class="fileinput-new">Change image</span>
+                                                <span class="fileinput-exists">Change</span>
+                                                <input type="file" name="image" id="pic" accept="image/*" />
+                                            </span>
+                                    <span class="btn btn-primary fileinput-exists" data-dismiss="fileinput">Remove</span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success blog_submit">@lang('blog/form.publish')</button>
-                            <a href="{{ URL::to('admin/blog') }}" class="btn btn-danger">@lang('blog/form.discard')</a>
+                            <button type="submit" class="btn btn-success blog_submit">@lang('blog/form.update')</button>
+                            <a href="{{ URL::to('admin/blog') }}" class="btn btn-danger">@lang('blog/form.cancel')</a>
                         </div>
                     </div>
                     <!-- /.col-sm-4 --> </div>
@@ -95,5 +105,6 @@
     <script src="{{ asset('assets/vendors/summernote/summernote.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/vendors/select2/js/select2.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/vendors/bootstrap-tagsinput/js/bootstrap-tagsinput.js') }}" type="text/javascript" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/pages/add_newblog.js') }}" ></script>
 @stop

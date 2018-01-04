@@ -1,4 +1,4 @@
-const { mix } = require('laravel-mix');
+let mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -100,7 +100,7 @@ const paths = {
     'timezone' : vendors + 'moment-timezone/',
     'nestable' : vendors + 'nestable/',
     'noty' : vendors + 'noty/js/noty/',
-    'owlcarousel': vendors +'owl.carousel/owl-carousel/',
+    'owlcarousel': vendors + 'owlCarousel/owl-carousel/',
     'pace': vendors +'PACE/',
     'rangy': vendors +'rangy-1.3/',
     'bootstrapSlider': vendors +'seiyria-bootstrap-slider/dist/',
@@ -114,7 +114,6 @@ const paths = {
     'wysihtml5x' : vendors + 'wysihtml5x/dist/',
     'xeditable' : vendors + 'x-editable/dist/',
     'nestablelist' : vendors + 'nestable-list/',
-    'secureimage' : vendors + 'secureimage/',
     'sparkline' : vendors + 'sparkline/src/',
     'tinymce': vendors + 'tinymce-dist/',
     'jqueryeasypiechart' : vendors + 'bower-jquery-easyPieChart/dist/',
@@ -149,11 +148,12 @@ const paths = {
     'sweetalert' : vendors + 'sweetalert/dist/',
     'jstree': vendors + 'jstree/dist/',
     'hover': vendors + 'hover/css/',
-    'jeditable': vendors + 'jeditable/js/',
+    'jeditable': vendors + 'jeditable/src/',
     'd3' : vendors + 'd3/',
     'morrisjs' : vendors + 'morris.js/',
     'd3pie' : vendors + 'd3pie/',
-    'treeview': vendors + 'bootstrap-treeview/'
+    'treeview': vendors + 'bootstrap-treeview/',
+    'smalotDatepicker': vendors + 'smalot-bootstrap-datetimepicker/'
 };
 
 //copy frontend skins to public
@@ -191,6 +191,10 @@ mix.copy(paths.daterangepicker + 'daterangepicker.css',  destVendors + 'daterang
 mix.copy(paths.airDatepicker + '/css/datepicker.min.css',  destVendors + 'airDatepicker/css');
 mix.copy(paths.airDatepicker + '/js/datepicker.min.js', destVendors + 'airDatepicker/js');
 mix.copy(paths.airDatepicker + '/js/i18n/datepicker.en.js', destVendors + 'airDatepicker/js');
+
+//smalotDatepicker
+mix.copy(paths.smalotDatepicker + '/css/bootstrap-datetimepicker.min.css',  destVendors + 'smalotDatepicker/css');
+mix.copy(paths.smalotDatepicker + '/js/bootstrap-datetimepicker.min.js', destVendors + 'smalotDatepicker/js');
 
 // pickadate
 mix.copy(paths.pickadate + '/themes/default.css',  destVendors + 'pickadate/css');
@@ -792,7 +796,6 @@ mix.copy(paths.card + 'src',  destVendors + 'card');
 mix.copy( srcCss + 'pages/form2.css', destCss + 'pages');
 mix.copy( srcCss + 'pages/form3.css', destCss + 'pages');
 mix.copy( srcJs + 'pages/validation.js', destJs + 'pages');
-mix.copy(paths.secureimage ,  destVendors + 'secureimage');
 mix.copy(paths.intltelinput +'build' ,  destVendors + 'intl-tel-input/');
 mix.copy(paths.intltelinput +'lib/libphonenumber/build/',  destVendors + 'intl-tel-input/lib/libphonenumber/build/');
 
@@ -979,11 +982,30 @@ mix.copy( srcJs + 'frontend/gmap.js', destJs + 'frontend');
 mix.copy( srcCss + 'frontend/user_account.css', destCss + 'frontend');
 mix.copy( srcJs + 'frontend/user_account.js', destJs + 'frontend');
 
+//jtable json data
+mix.copy(resourcesAssets + 'jtable_data/jtable.json' ,dest + 'jtable_data/' );
+mix.copy(resourcesAssets + 'jtable_data/create.json' ,dest + 'jtable_data/' );
+mix.copy(resourcesAssets + 'jtable_data/delete.json', dest + 'jtable_data/');
+mix.copy(resourcesAssets + 'jtable_data/update.json', dest + 'jtable_data/');
+mix.copy(resourcesAssets + 'jtable_data/cityOptions.json' ,dest + 'jtable_data/' );
 
 // Custom Styles
 // wow
 mix.copy(paths.wow + 'wow.min.js',  destVendors + 'wow/js');
 // Custom Styles
+
+//products page
+mix.copy( srcCss + 'pages/log_viewer.css', destCss + 'pages');
+
+//dymanic dashboard
+mix.copy( srcCss + 'pages/dashboard2.css', destCss + 'pages');
+
+//minisidebar
+mix.copy( srcJs + 'pages/minisidebar.js', destJs + 'pages');
+mix.copy( srcCss + 'pages/minisidebar.css', destCss + 'pages');
+
+// Fixed menu layout
+mix.copy( srcCss + 'pages/fixedmenu.css', destCss + 'pages');
 
 //css section
 // Custom Styles
@@ -996,6 +1018,7 @@ mix.combine(
         srcCss + 'black.css',
         srcCss + 'panel.css',
         srcCss + 'metisMenu.css'
+        // srcCss + 'pages/fixedmenu.css'
     ], destCss + 'app.css');
 
 //white color scheme
@@ -1039,7 +1062,9 @@ mix.combine(
     [
         srcJs + 'jquery-1.11.1.min.js',
         srcJs + 'bootstrap.min.js',
+        srcJs + 'bootstrap.min.js',
         vendors + 'raphael/raphael-min.js',
         srcJs + 'livicons-1.4.min.js',
         srcJs + 'frontend/josh_frontend.js'
     ], destJs + 'frontend/lib.js');
+

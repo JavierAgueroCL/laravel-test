@@ -8,6 +8,11 @@
     border-left: 1px solid #F89A14 !important;
 }
 
+.tabtop .nav-tabs > li > a {
+    border-top: 4px solid transparent !important;
+    border-right: 1px solid transparent !important;
+    border-left: 1px solid transparent !important;
+}
 .navbar .nav .dropdown-toggle .caret {
     margin-top: -12px ! important;
 }

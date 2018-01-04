@@ -1,5 +1,9 @@
 <?php
 
+use Faker\Factory;
+use App\User;
+use Illuminate\Database\Seeder;
+
 class AdminSeeder extends DatabaseSeeder {
 
 	public function run()
@@ -22,10 +26,11 @@ class AdminSeeder extends DatabaseSeeder {
 			'permissions' => array('admin' => 1),
 		]);
 
-		Sentinel::getRoleRepository()->createModel()->create([
+        $userRole = Sentinel::getRoleRepository()->createModel()->create([
 			'name'  => 'User',
 			'slug'  => 'user',
 		]);
+
 
 		$admin->roles()->attach($adminRole);
 

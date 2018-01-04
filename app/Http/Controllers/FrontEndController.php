@@ -6,13 +6,13 @@ use Activation;
 use App\Http\Requests;
 use App\Http\Requests\PasswordResetRequest;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\FrontendRequest;
 use App\User;
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use File;
 use Hash;
 use Illuminate\Http\Request;
-use Lang;
 use Mail;
 use Redirect;
 use Reminder;
@@ -20,23 +20,21 @@ use Validator;
 use Sentinel;
 use URL;
 use View;
+use stdClass;
+use App\Mail\Contact;
+use App\Mail\ForgotPassword ;
+use App\Mail\Restore;
+
 
 
 class FrontEndController extends JoshController
 {
-    protected $validationRules = array(
-        'first_name' => 'required|min:3',
-        'last_name' => 'required|min:3',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|between:3,32',
-        'password_confirm' => 'required|same:password',
-        'pic' => 'mimes:jpg,jpeg,bmp,png|max:10000'
-    );
+
     /*
      * $user_activation set to false makes the user activation via user registered email
      * and set to true makes user activated while creation
      */
-    private $user_activation = true;
+    private $user_activation = false;
 
     /**
      * Account sign in.
@@ -49,7 +47,6 @@ class FrontEndController extends JoshController
         if (Sentinel::check()) {
             return Redirect::route('my-account');
         }
-
         // Show the login page
         return view('login');
     }
@@ -64,24 +61,30 @@ class FrontEndController extends JoshController
 
         try {
             // Try to log the user in
-            if (Sentinel::authenticate($request->only('email', 'password'), $request->get('remember-me', 0))) {
-                return Redirect::route("my-account")->with('success', Lang::get('auth/message.login.success'));
+            if ($user=  Sentinel::authenticate($request->only('email', 'password'), $request->get('remember-me', 0))) {
+                //Activity log for login
+                activity($user->full_name)
+                    ->performedOn($user)
+                    ->causedBy($user)
+                    ->log('LoggedIn');
+
+                return Redirect::route("my-account")->with('success', trans('auth/message.login.success'));
             } else {
                 return redirect('login')->with('error', 'Email or password is incorrect.');
                 //return Redirect::back()->withInput()->withErrors($validator);
             }
 
         } catch (UserNotFoundException $e) {
-            $this->messageBag->add('email', Lang::get('auth/message.account_not_found'));
+            $this->messageBag->add('email', trans('auth/message.account_not_found'));
         } catch (NotActivatedException $e) {
-            $this->messageBag->add('email', Lang::get('auth/message.account_not_activated'));
+            $this->messageBag->add('email', trans('auth/message.account_not_activated'));
         } catch (UserSuspendedException $e) {
-            $this->messageBag->add('email', Lang::get('auth/message.account_suspended'));
+            $this->messageBag->add('email', trans('auth/message.account_suspended'));
         } catch (UserBannedException $e) {
-            $this->messageBag->add('email', Lang::get('auth/message.account_banned'));
+            $this->messageBag->add('email', trans('auth/message.account_banned'));
         } catch (ThrottlingException $e) {
             $delay = $e->getDelay();
-            $this->messageBag->add('email', Lang::get('auth/message.account_suspended', compact('delay')));
+            $this->messageBag->add('email', trans('auth/message.account_suspended', compact('delay')));
         }
 
         // Ooops.. something went wrong
@@ -104,60 +107,18 @@ class FrontEndController extends JoshController
      * @param User $user
      * @return Return Redirect
      */
-    public function update(Request $request, User $user)
+    public function update(User $user, FrontendRequest $request)
     {
-
-        $rules = array(
-            'pic' => 'mimes:jpg,jpeg,bmp,png|max:10000',
-            'first_name'=>'required',
-            'last_name'=>'required'
-        );
-        $message=['pic.mimes' => 'Please upload image types : jpg,jpeg,bmp,png !'];
-
-
         $user = Sentinel::getUser();
-        //validatoinRules are declared at beginning
-        if ($request->get('email')) {
-            $this->validationRules['email'] = "required|email|unique:users,email,{$user->email},email";
-        }
-        elseif ($request->get('email')==null) {
-            $this->validationRules['email'] = "required|email|unique:users,email,{$user->email},email";
-        }
-        else {
-            unset($this->validationRules['email']);
-        }
-        if (!$password = $request->get('password')) {
-            unset($this->validationRules['password']);
-            unset($this->validationRules['password_confirm']);
-        }
-        // Create a new validator instance from our validation rules
-        $validator = Validator::make($request->all(), $this->validationRules,$message);
-
-        // If validation fails, we'll exit the operation now.
-        if ($validator->fails()) {
-            // Ooops.. something went wrong
-            return Redirect::back()->withInput()->withErrors($validator);
-        }
-
         //update values
-        $user->first_name = $request->get('first_name');
-        $user->last_name = $request->get('last_name');
-        $user->email = $request->get('email');
-        $user->dob = $request->get('dob');
-        $user->bio = $request->get('bio');
-        $user->gender = $request->get('gender');
-        $user->country = $request->get('country');
-        $user->state = $request->get('state');
-        $user->city = $request->get('city');
-        $user->address = $request->get('address');
-        $user->postal = $request->get('postal');
+        $user->update($request->except('password','pic','password_confirm'));
+
         if ($password = $request->get('password')) {
             $user->password = Hash::make($password);
         }
         // is new image uploaded?
         if ($file = $request->file('pic')) {
-            $fileName = $file->getClientOriginalName();
-            $extension = $file->getClientOriginalExtension() ?: 'png';
+            $extension = $file->extension()?: 'png';
             $folderName = '/uploads/users/';
             $destinationPath = public_path() . $folderName;
             $safeName = str_random(10) . '.' . $extension;
@@ -167,7 +128,6 @@ class FrontEndController extends JoshController
             if (File::exists(public_path() . $folderName . $user->pic)) {
                 File::delete(public_path() . $folderName . $user->pic);
             }
-
             //save new file path into db
             $user->pic = $safeName;
 
@@ -176,14 +136,18 @@ class FrontEndController extends JoshController
         // Was the user updated?
         if ($user->save()) {
             // Prepare the success message
-            $success = Lang::get('users/message.success.update');
-
+            $success = trans('users/message.success.update');
+            //Activity log for update account
+            activity($user->full_name)
+                ->performedOn($user)
+                ->causedBy($user)
+                ->log('User Updated successfully');
             // Redirect to the user page
             return Redirect::route('my-account')->with('success', $success);
         }
 
         // Prepare the error message
-        $error = Lang::get('users/message.error.update');
+        $error = trans('users/message.error.update');
 
 
         // Redirect to the user page
@@ -210,8 +174,8 @@ class FrontEndController extends JoshController
      */
     public function postRegister(UserRequest $request)
     {
+        $data = new stdClass();
         $activate = $this->user_activation; //make it false if you don't want to activate user automatically it is declared above as global variable
-
         try {
             // Register the user
             $user = Sentinel::register($request->only(['first_name', 'last_name', 'email', 'password', 'gender']), $activate);
@@ -219,33 +183,30 @@ class FrontEndController extends JoshController
             //add user to 'User' group
             $role = Sentinel::findRoleByName('User');
             $role->users()->attach($user);
-
             //if you set $activate=false above then user will receive an activation mail
             if (!$activate) {
                 // Data to be used on the email view
-                $data = array(
-                    'user' => $user,
-                    'activationUrl' => URL::route('activate', [$user->id, Activation::create($user)->code]),
-                );
-
+                info(Activation::create($user)->code);
+                $data->user_name =$user->first_name .' '. $user->last_name;
+                $data->activationUrl = URL::route('activate', [$user->id, Activation::create($user)->code]);
                 // Send the activation code through email
-                Mail::send('emails.register-activate', $data, function ($m) use ($user) {
-                    $m->to($user->email, $user->first_name . ' ' . $user->last_name);
-                    $m->subject('Welcome ' . $user->first_name);
-                });
-
+                Mail::to($user->email)
+                    ->send(new Restore($data));
                 //Redirect to login page
-                return redirect('login')->with('success', Lang::get('auth/message.signup.success'));
+                return redirect('login')->with('success', trans('auth/message.signup.success'));
             }
             // login user automatically
             Sentinel::login($user, false);
-
+            //Activity log for new account
+            activity($user->full_name)
+                ->performedOn($user)
+                ->causedBy($user)
+                ->log('New Account created');
             // Redirect to the home page with success menu
-            return Redirect::route("my-account")->with('success', Lang::get('auth/message.signup.success'));
-            //return View::make('user_account')->with('success', Lang::get('auth/message.signup.success'));
+            return Redirect::route("my-account")->with('success', trans('auth/message.signup.success'));
 
         } catch (UserExistsException $e) {
-            $this->messageBag->add('email', Lang::get('auth/message.account_already_exists'));
+            $this->messageBag->add('email', trans('auth/message.account_already_exists'));
         }
 
         // Ooops.. something went wrong
@@ -270,10 +231,10 @@ class FrontEndController extends JoshController
 
         if (Activation::complete($user, $activationCode)) {
             // Activation was successfull
-            return Redirect::route('login')->with('success', Lang::get('auth/message.activate.success'));
+            return Redirect::route('login')->with('success', trans('auth/message.activate.success'));
         } else {
             // Activation not found or not completed.
-            $error = Lang::get('auth/message.activate.error');
+            $error = trans('auth/message.activate.error');
             return Redirect::route('login')->with('error', $error);
         }
     }
@@ -297,32 +258,28 @@ class FrontEndController extends JoshController
      */
     public function postForgotPassword(Request $request)
     {
+        $data = new stdClass();
         try {
             // Get the user password recovery code
-            //$user = Sentinel::FindByLogin($request->get('email'));
             $user = Sentinel::findByCredentials(['email' => $request->email]);
             if (!$user) {
-                return Redirect::route('forgot-password')->with('error', Lang::get('auth/message.account_email_not_found'));
+                return Redirect::route('forgot-password')->with('error', trans('auth/message.account_email_not_found'));
             }
 
             $activation = Activation::completed($user);
             if (!$activation) {
-                return Redirect::route('forgot-password')->with('error', Lang::get('auth/message.account_not_activated'));
+                return Redirect::route('forgot-password')->with('error', trans('auth/message.account_not_activated'));
             }
 
             $reminder = Reminder::exists($user) ?: Reminder::create($user);
             // Data to be used on the email view
-            $data = array(
-                'user' => $user,
-                //'forgotPasswordUrl' => URL::route('forgot-password-confirm', $user->getResetPasswordCode()),
-                'forgotPasswordUrl' => URL::route('forgot-password-confirm', [$user->id, $reminder->code]),
-            );
 
+            $data->user_name =$user->first_name .' '. $user->last_name;
+            $data->forgotPasswordUrl = URL::route('forgot-password-confirm', [$user->id, $reminder->code]);
             // Send the activation code through email
-            Mail::send('emails.forgot-password', $data, function ($m) use ($user) {
-                $m->to($user->email, $user->first_name . ' ' . $user->last_name);
-                $m->subject('Account Password Recovery');
-            });
+            Mail::to($user->email)
+                ->send(new ForgotPassword($data));
+
         } catch (UserNotFoundException $e) {
             // Even though the email was not found, we will pretend
             // we have sent the password reset code through email,
@@ -330,7 +287,7 @@ class FrontEndController extends JoshController
         }
 
         //  Redirect to the forgot password
-        return back()->with('success', Lang::get('auth/message.forgot-password.success'));
+        return back()->with('success', trans('auth/message.forgot-password.success'));
     }
 
     /**
@@ -343,7 +300,7 @@ class FrontEndController extends JoshController
     {
         if (!$user = Sentinel::findById($userId)) {
             // Redirect to the forgot password page
-            return Redirect::route('forgot-password')->with('error', Lang::get('auth/message.account_not_found'));
+            return Redirect::route('forgot-password')->with('error', trans('auth/message.account_not_found'));
         }
 
         if($reminder = Reminder::exists($user))
@@ -375,11 +332,11 @@ class FrontEndController extends JoshController
         $user = Sentinel::findById($userId);
         if (!$reminder = Reminder::complete($user, $passwordResetCode, $request->get('password'))) {
             // Ooops.. something went wrong
-            return Redirect::route('login')->with('error', Lang::get('auth/message.forgot-password-confirm.error'));
+            return Redirect::route('login')->with('error', trans('auth/message.forgot-password-confirm.error'));
         }
 
         // Password successfully reseted
-        return Redirect::route('login')->with('success', Lang::get('auth/message.forgot-password-confirm.success'));
+        return Redirect::route('login')->with('success', trans('auth/message.forgot-password-confirm.success'));
     }
 
     /**
@@ -389,25 +346,33 @@ class FrontEndController extends JoshController
      */
     public function postContact(Request $request)
     {
+        $data = new stdClass();
 
         // Data to be used on the email view
-        $data = array(
-            'contact-name' => $request->get('contact-name'),
-            'contact-email' => $request->get('contact-email'),
-            'contact-msg' => $request->get('contact-msg'),
-        );
+        $data->contact_name = $request->get('contact-name');
+        $data->contact_email = $request->get('contact-email');
+        $data->contact_msg = $request->get('contact-msg');
 
         // Send the activation code through email
-        Mail::send('emails.contact', compact('data'), function ($m) use ($data) {
-            $m->from($data['contact-email'], $data['contact-name']);
-            $m->to('email@domain.com', @trans('general.site_name'));
-            $m->subject('Received a mail from ' . $data['contact-name']);
-
-        });
+        Mail::to('email@domain.com')
+            ->send(new Contact($data));
 
         //Redirect to contact page
-        return redirect('contact')->with('success', Lang::get('auth/message.contact.success'));
+        return redirect('contact')->with('success', trans('auth/message.contact.success'));
     }
+
+    public function showFrontEndView($name=null)
+    {
+        if(View::exists($name))
+        {
+            return view($name);
+        }
+        else
+        {
+            abort('404');
+        }
+    }
+
 
     /**
      * Logout page.
@@ -416,9 +381,16 @@ class FrontEndController extends JoshController
      */
     public function getLogout()
     {
-        // Log the user out
-        Sentinel::logout();
-
+        if (Sentinel::check()) {
+            //Activity log
+            $user = Sentinel::getuser();
+            activity($user->full_name)
+                ->performedOn($user)
+                ->causedBy($user)
+                ->log('LoggedOut');
+            // Log the user out
+            Sentinel::logout();
+        }
         // Redirect to the users page
         return redirect('login')->with('success', 'You have successfully logged out!');
     }

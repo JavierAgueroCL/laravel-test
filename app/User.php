@@ -1,6 +1,7 @@
 <?php namespace App;
 use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentTaggable\Taggable;
 
 
 class User extends EloquentUser {
@@ -10,6 +11,7 @@ class User extends EloquentUser {
 	 *
 	 * @var string
 	 */
+
 	protected $table = 'users';
 
 	/**
@@ -19,6 +21,8 @@ class User extends EloquentUser {
 	 *
 	 * @var array
 	 */
+    use Taggable;
+
 	protected $fillable = [];
 	protected $guarded = ['id'];
 	/**
@@ -34,5 +38,14 @@ class User extends EloquentUser {
 	use SoftDeletes;
 
     protected $dates = ['deleted_at'];
+
+    protected $appends = ['full_name'];
+    public function getFullNameAttribute()
+    {
+        return str_limit($this->first_name . ' ' . $this->last_name, 30);
+    }
+    public function country() {
+        return $this->belongsTo( Country::class );
+    }
 
 }

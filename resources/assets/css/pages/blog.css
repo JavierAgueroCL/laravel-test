@@ -168,6 +168,7 @@ h3 {
 .note-editable {
     height : 300px;
     width  : 100%;
+    min-height: 300px ;
 }
 .note-popover .popover-content .dropdown-menu,
 .panel-heading.note-toolbar .dropdown-menu {
@@ -184,15 +185,28 @@ h3 {
 #comment {
     resize : vertical;
 }
-.note-editable{
-    min-height: 300px !important;
-}
+
 .panel-default > .panel-heading{
     color:#555;
 }
+textarea{
+    resize: vertical;
+}
+
 @media(min-width:320px) and (max-width:425px){
     .col-full-width-right iframe{
         height:100%;
         width:100%;
+    }
+}
+
+@media (max-width: 425px) {
+    .panel-heading.note-toolbar .note-color .dropdown-menu {
+        margin-left: -48px;
+        min-width: 176px !important;
+    }
+
+    .panel-heading.note-toolbar .note-color .dropdown-menu .btn-group:first-child {
+        display: block;
     }
 }

@@ -303,6 +303,7 @@ button {
 .note-editable {
     height : 300px;
     width  : 100%;
+    min-height: 300px;
 }
 .note-popover .popover-content .dropdown-menu,
 .panel-heading.note-toolbar .dropdown-menu {
@@ -333,9 +334,7 @@ a[data-wysihtml5-command="insertImage"],
 .wysihtml5-toolbar li:last-child {
     visibility: hidden;
 }
-.note-editable{
-    min-height: 300px !important;
-}
+
 @media (max-width:768px){
 
     .panel-heading.note-toolbar .note-color .dropdown-menu{
@@ -348,4 +347,7 @@ a[data-wysihtml5-command="insertImage"],
 }
 .btn_margin_top{
     margin-top:5px;
+}
+.border-bottom {
+    border-bottom: 1px solid #ccc;
 }

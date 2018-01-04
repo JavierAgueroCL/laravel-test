@@ -233,11 +233,11 @@
                             <!-- /.input group -->
                         </div>
                         <div class="form-group">
-                            <div class="row">
+
                                 <label>Check-In, Check-out Date Picker:</label>
-                            </div>
+
                             <div class="row">
-                            <div class="col-md-5">
+                                <div class="col-sm-5 pad-0-res mt-5">
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="livicon" data-name="calendar" data-size="16" data-c="#555555"
@@ -246,7 +246,7 @@
                                     <input class="form-control" id="check_in_date" placeholder="Check-In Date">
                                 </div>
                             </div>
-                            <div class="col-md-5">
+                                <div class="col-sm-5 pad-0-res mt-5">
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="livicon" data-name="calendar" data-size="16" data-c="#555555"

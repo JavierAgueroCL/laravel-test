@@ -11,8 +11,15 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/pages/todolist.css') }}"/>
     <meta name="_token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+{{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">--}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/smalotDatepicker/css/bootstrap-datetimepicker.min.css') }}">
+    {{--<link rel="stylesheet" href="https://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">--}}
     <!-- end of page level css -->
+    <style>
+        .datetimepicker-dropdown-bottom-left:before{
+            right:inherit;
+        }
+    </style>
 @stop
 
 {{-- Page content --}}
@@ -56,7 +63,7 @@
                             </div>
                             <div class="form-group">
                                 {!! Form::label('task_deadline', 'Deadline: ') !!}
-                                {!! Form::text('task_deadline', null, ['class' => 'form-control datepicker', 'id'=>'task_deadline', 'data-date-format'=> 'YYYY/MM/DD', 'required' => 'required']) !!}
+                                {!! Form::text('task_deadline', null, ['class' => 'form-control datepicker', 'id'=>'task_deadline', 'onkeydown'=>'return false', 'data-date-format'=> 'YYYY/MM/DD', 'required' => 'required','autocomplete'=>'off']) !!}
                             </div>
                             <button type="submit" class="btn btn-primary add_button">
                                 Add Task
@@ -70,14 +77,43 @@
         </div>
     </section>
     <!-- content -->
-
+    <div class="modal fade" id="editConfirmModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Alert</h4>
+                </div>
+                <div class="modal-body">
+                    <p>You are already editing a row, you must save or cancel that row before edit/delete a new row</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 @stop
 
 {{-- page level scripts --}}
 @section('footer_scripts')
-
     <script type="text/javascript" src="{{ asset('assets/vendors/moment/js/moment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+{{--    <script type="text/javascript" src="{{ asset('assets/vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>--}}
+    <script type="text/javascript" src="{{ asset('assets/vendors/smalotDatepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/pages/tasklist.js') }}"></script>
 
+    <script>
+        var currentDate = new Date();
+        $(".datepicker").datetimepicker({
+            startDate: currentDate,
+            format: "yyyy/mm/dd",
+            autoclose: true,
+            time:false,
+            pickerPosition: "bottom-right",
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+    </script>
 @stop

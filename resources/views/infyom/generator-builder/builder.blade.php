@@ -50,13 +50,11 @@
                     <div class="row">
                     <div class="form-group col-md-4">
                         <label for="txtModelName">Model Name<span class="required">*</span></label>
-                        <input type="text" class="form-control text-capitalize" required name="model_name" id="txtModelName" placeholder="Enter name">
+                        <input type="text" class="form-control text-capitalize" required name="model_name" id="txtModelName" placeholder="Enter name" >
                     </div>
                     <div class="form-group col-md-4">
                         <label for="drdCommandType">Command Type</label>
                         <select id="drdCommandType" class="form-control" style="width: 100%">
-                            {{--<option value="infyom:api_scaffold">API Scaffold Generator</option>
-                            <option value="infyom:api">API Generator</option>--}}
                             <option value="infyom:scaffold">Scaffold Generator</option>
                         </select>
                     </div>
@@ -76,27 +74,10 @@
                                             class="chk-label-margin"> Soft Delete </span>
                                 </label>
                             </div>
-                            {{--<div class="checkbox chk-align">
-                                <label>
-                                    <input type="checkbox" class="flat-red" id="chkSave"> <span
-                                            class="chk-label-margin">Save Schema</span>
-                                </label>
-                            </div>
-                            <div class="checkbox chk-align" id="chSwag">
-                                <label>
-                                    <input type="checkbox" class="flat-red" id="chkSwagger"> <span
-                                            class="chk-label-margin">Swagger</span>
-                                </label>
-                            </div>
-                            <div class="checkbox chk-align" id="chTest">
-                                <label>
-                                    <input type="checkbox" class="flat-red" id="chkTestCases"> <span
-                                            class="chk-label-margin">Test Cases</span>
-                                </label>
-                            </div>--}}
+
                             <div class="checkbox chk-align" id="chDataTable">
                                 <label>
-                                    <input type="checkbox" class="flat-red" id="chkDataTable"> <span
+                                    <input type="checkbox" class="flat-red" id="chkDataTable" checked> <span
                                             class="chk-label-margin">Datatables</span>
                                 </label>
                             </div>
@@ -251,12 +232,11 @@
                                     </div>
                                 </td>
                                 <td style="text-align: center;vertical-align: middle">
-                                    <i onclick="removeItem(this)" class="remove fa fa-trash-o"
-                                       style="cursor: pointer;font-size: 20px;color: #EF6F6C"></i>
+                                    <i onclick="removeItem(this)" class="livicon remove" data-name="remove-alt"
+                                       data-size="18" data-loop="true" data-c="#f56954"
+                                       data-hc="#f56954" style="cursor:pointer"
+                                       ></i>
                                 </td>
-                                {{--<script type="text/javascript">--}}
-                                {{--$('.txtValidation').select2();--}}
-                                {{--</script>--}}
                             </tr>
 
                             </tbody>
@@ -311,7 +291,6 @@
                     </div>
 
                 </form>
-
             </div>
         </div>
 
@@ -405,8 +384,9 @@
     <script>
 
 
-        $('.left-side').addClass('collapse-left');
-        $('.right-side').addClass('strech');
+//        $('.left-side').addClass('collapse-left');
+//        $('.right-side').addClass('strech');
+$(".wrapper").addClass("hide_menu");
         $(document).ready(function() {
             $('#form4').bootstrapValidator({
                 fields: {
@@ -571,10 +551,11 @@
                     var item = $(commonComponent).clone();
                     initializeCheckbox(item);
                     $("#container").append(item);
-                });
-//                if($('.item').find('.txtdbType').val() == 'text'){
+                    //Initializing trash liveicon
+                    $('.remove').updateLivicon();
+                    $('#table tr:last').find('.textarea').attr('disabled', true);
 
-//                }
+                });
 
                 $("#btnTimeStamps").on("click", function () {
                     var item_created_at = $(commonComponent).clone();
@@ -606,6 +587,32 @@
                     return string.charAt(0).toUpperCase() + string.slice(1);
                 }
 
+                $('#txtModelName').on('blur', function(){
+                    var modelname = {
+                        modelName: capitalizeFirstLetter($('#txtModelName').val())
+                    }
+                    $.ajax({
+                        url: '{{ url('admin/modelCheck') }}',
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify(modelname),
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (result) {
+                            if( result.status == false){
+                                swal({title:'error',text: result.message, type: "error",closeOnConfirm: false,showLoaderOnConfirm: true});
+                                $('#btnGenerate').prop('disabled', true);
+                            }
+                            else{
+                                $('#btnGenerate').prop('disabled', false);
+                            }
+
+                        },
+                    });
+                });
+
                 $('#btnGenerate').on('click',function() {
 
                     var fieldArr = [];
@@ -616,7 +623,7 @@
 
                         var htmlType = $(this).find('.drdHtmlType');
                         var htmlValue = "";
-                        if ($(htmlType).val() == "select" || $(htmlType).val() == "radio") {
+                        if ($(htmlType).val() == "select" || $(htmlType).val() == "radio" || $(htmlType).val() == "checkbox") {
                             htmlValue = $(this).find('.drdHtmlType').val() + ':' + $(this).find('.txtHtmlValue').val();
                         }
                         else {
@@ -801,6 +808,31 @@
             var icon_name=$(this).attr('data-name');
             $('#leftMenuIcons').val(icon_name);
 //            $('.close').click();
+        });
+        $(function() {
+            $('.txtHtmlValue').on('keypress', function(e) {
+                if (e.which == 32)
+                    return false;
+            });
+            $( "#txtModelName" ).keypress(function(e) {
+                var x = $(this).val() + String.fromCharCode(e.charCode);
+                if (e.charCode == 0) {
+                    return;
+                }
+                if (x.match(/^[A-z]+$/) == null) {
+                    e.preventDefault();
+                }
+            });
+            $( ".txtFieldName" ).keypress(function(e) {
+                var x = $(this).val() + String.fromCharCode(e.charCode);
+                if (e.charCode == 0) {
+                    return;
+                }
+                if (x.match(/^\w+$/) == null) {
+                    e.preventDefault();
+                }
+            });
+
         });
 
     </script>

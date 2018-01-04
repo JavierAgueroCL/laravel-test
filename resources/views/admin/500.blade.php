@@ -49,7 +49,7 @@
     $(document).ready(function() {
         var x = $(window).height();
         var y = $(".middle").height();
-        //alert(x);
+
         x = x - y;
         x = x / 2;
         $(".middle").css("padding-top", x);

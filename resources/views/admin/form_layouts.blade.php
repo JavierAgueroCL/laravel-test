@@ -563,29 +563,24 @@ Form Layouts
                                         <div class="col-md-6">
                                             <form class="form-horizontal">
                                                 <div class="form-group has-success">
-                                                    <label class="col-md-2 control-label" for="form2inputSuccess">First Name</label>
-                                                    <div class="col-md-10">
+                                                    <label class="col-md-3 control-label" for="form2inputSuccess">First Name</label>
+                                                    <div class="col-md-9">
                                                         <input type="text" id="form2inputSuccess" class="form-control" placeholder="Input with success">
                                                         <span class="help-block">First name is too small</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group has-warning">
-                                                    <label class="col-md-2 control-label" for="form2inputWarning">Password</label>
-                                                    <div class="col-md-10">
+                                                    <label class="col-md-3 control-label" for="form2inputWarning">Password</label>
+                                                    <div class="col-md-9">
                                                         <input type="password" id="form2inputWarning" class="form-control" placeholder="Input with warning">
                                                         <span class="help-block">Password strength: Weak</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group has-error">
-                                                    <label class="col-md-2 control-label" for="form2inputError">Email</label>
-                                                    <div class="col-md-10">
+                                                    <label class="col-md-3 control-label" for="form2inputError">Email</label>
+                                                    <div class="col-md-9">
                                                         <input type="email" id="form2inputError" class="form-control" placeholder="Input with error">
                                                         <span class="help-block">Please enter a valid email address</span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="col-md-offset-2 col-md-10">
-                                                        <button type="submit" class="btn btn-primary">Login</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -593,32 +588,32 @@ Form Layouts
                                         <div class="col-md-6">
                                             <form class="form-horizontal">
                                                 <div class="form-group has-success has-feedback">
-                                                    <label class="col-md-2 control-label" for="inputSuccess1">Second Name</label>
-                                                    <div class="col-md-10">
+                                                    <label class="col-md-3 control-label" for="inputSuccess1">Second Name</label>
+                                                    <div class="col-md-9">
                                                         <input type="text" id="inputSuccess1" class="form-control" placeholder="Input with success">
                                                         <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                                         <span class="help-block">Second name is too small</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group has-warning has-feedback">
-                                                    <label class="col-md-2 control-label" for="inputWarning1">Confirm Password</label>
-                                                    <div class="col-md-10">
+                                                    <label class="col-md-3 control-label" for="inputWarning1">Confirm Password</label>
+                                                    <div class="col-md-9">
                                                         <input type="password" id="inputWarning1" class="form-control" placeholder="Input with warning">
                                                         <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                                         <span class="help-block">Password mis-match</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group has-error has-feedback">
-                                                    <label class="col-md-2 control-label" for="inputError1">Confirm Email</label>
-                                                    <div class="col-md-10">
+                                                    <label class="col-md-3 control-label" for="inputError1">Confirm Email</label>
+                                                    <div class="col-md-9">
                                                         <input type="email" id="inputError1" class="form-control" placeholder="Input with error">
                                                         <span class="glyphicon glyphicon-remove form-control-feedback"></span>
                                                         <span class="help-block">Email mis-match</span>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group text-right">
                                                     <div class="col-md-offset-2 col-md-10">
-                                                        <button type="submit" class="btn btn-primary">Login</button>
+                                                        <button type="submit" class="btn btn-primary">Signup</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -846,56 +841,56 @@ Form Layouts
                                             <div class="form-body">
                                                 <h3>Personal</h3>
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">First Name :</label>
-                                                            <div class="col-md-9">
+                                                            <label class="col-sm-4 control-label">First Name :</label>
+                                                            <div class="col-sm-8">
                                                                 <p class="form-control-static">Jenny</p>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">Last Name :</label>
-                                                            <div class="col-md-9">
+                                                            <label class="col-sm-4 control-label">Last Name :</label>
+                                                            <div class="col-sm-8">
                                                                 <p class="form-control-static">Kerry</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">Email :</label>
-                                                            <div class="col-md-9">
+                                                            <label class="col-sm-4 control-label">Email :</label>
+                                                            <div class="col-sm-8">
                                                                 <p class="form-control-static">
                                                                     <a href="mailto:whisfat1935@jourrapide.com">Jenny321@example.com</a>
                                                                 </p>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">Gender :</label>
-                                                            <div class="col-md-9">
+                                                            <label class="col-sm-4 control-label">Gender :</label>
+                                                            <div class="col-sm-8">
                                                                 <p class="form-control-static">Female</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">Birthday :</label>
-                                                            <div class="col-md-9">
+                                                            <label class="col-sm-4 control-label">Birthday :</label>
+                                                            <div class="col-sm-8">
                                                                 <p class="form-control-static">10.11.1980</p>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">Phone :</label>
-                                                            <div class="col-md-9">
+                                                            <label class="col-sm-4 control-label">Phone :</label>
+                                                            <div class="col-sm-8">
                                                                 <p class="form-control-static">321-333-5432</p>
                                                             </div>
                                                         </div>
@@ -903,54 +898,54 @@ Form Layouts
                                                 </div>
                                                 <h3>Address</h3>
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">Address 1 :</label>
-                                                            <div class="col-md-9">
+                                                            <label class="col-sm-4 control-label">Address 1 :</label>
+                                                            <div class="col-sm-8">
                                                                 <p class="form-control-static">1219 Quiet Subdivision</p>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">Address 2 :</label>
-                                                            <div class="col-md-9">
+                                                            <label class="col-sm-4 control-label">Address 2 :</label>
+                                                            <div class="col-sm-8">
                                                                 <p class="form-control-static">3536 Petunia Way</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">States :</label>
-                                                            <div class="col-md-9">
+                                                            <label class="col-sm-4 control-label">States :</label>
+                                                            <div class="col-sm-8">
                                                                 <p class="form-control-static">Canada</p>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">City :</label>
-                                                            <div class="col-md-9">
+                                                            <label class="col-sm-4 control-label">City :</label>
+                                                            <div class="col-sm-8">
                                                                 <p class="form-control-static">Canada</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">Post Code :</label>
-                                                            <div class="col-md-9">
+                                                            <label class="col-sm-4 control-label">Post Code :</label>
+                                                            <div class="col-sm-8">
                                                                 <p class="form-control-static">7987678</p>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">Conditions :</label>
-                                                            <div class="col-md-9">
+                                                            <label class="col-sm-4 control-label">Conditions :</label>
+                                                            <div class="col-sm-8">
                                                                 <p class="form-control-static">True</p>
                                                             </div>
                                                         </div>

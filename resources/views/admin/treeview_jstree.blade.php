@@ -172,7 +172,7 @@
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-5">
                                                 <label>Input:</label>
                                                 <div class="form-group">
                                                     <label for="input-expand-node" class="sr-only">Search Tree:</label>
@@ -230,7 +230,7 @@
                                                 <label>Tree:</label>
                                                 <div id="treeview-expandible" class=""></div>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
                                                 <label>Events:</label>
                                                 <div id="expandible-output"></div>
                                             </div>

@@ -485,6 +485,6 @@ Customized Bootstrap Buttons
 }
 @media (min-width:320px) and (max-width:375px){
     .panel-heading .pull-right{
-        display:none;
+        /*display:none;*/
     }
 }

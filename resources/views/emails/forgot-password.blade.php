@@ -1,13 +1,26 @@
-@extends('emails/layouts/default')
+@component('mail::layout')
+    {{-- Header --}}
+    @slot('header')
+        @component('mail::header', ['url' => config('app.url')])
+            Josh Admin
+        @endcomponent
+    @endslot
 
-@section('content')
-<p>Hello {!! $user->first_name !!} {!! $user->last_name !!},</p>
+    {{-- Body --}}
+# Hello  {!! $user->user_name !!},<br>
 
-<p>Please click on the following link to updated your password:</p>
+Please click on the following link to updated your password
+@component('mail::button', ['url' =>  $user->forgotPasswordUrl ])
+    Reset Password
+@endcomponent
 
-<p><a href="{!! $forgotPasswordUrl !!}">{!! $forgotPasswordUrl !!}</a></p>
 
-<p>Best regards,</p>
+    Thanks,
 
-<p>@lang('general.site_name') Team</p>
-@stop
+    {{-- Footer --}}
+    @slot('footer')
+    @component('mail::footer')
+    &copy; 2017 All Copy right received
+@endcomponent
+@endslot
+@endcomponent

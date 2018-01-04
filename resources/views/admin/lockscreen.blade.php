@@ -18,29 +18,27 @@
 <div class="top">
     <div class="colors"></div>
 </div>
-<pre>
-<?php
-$WebService= new SoapClient("https://maullin.sii.cl/DTEWS/QueryEstDte.jws?WSDL",
-                    array('trace' => 1,'soap_version' => SOAP_1_1));
-$user = 'valoruser';
-$password = 'valorpassword';
-$token = 'valortoken';
-
-// Realizamos la llamada a la funcion SOAP (validar)
-$result = $WebService->__soapCall('getEstDte',array('parameters' => array('username'=>$user,'password'=>$password,'token'=>$token)));
-var_dump($$result);
-?>
-</pre>
 <div class="container">
     <div class="login-container">
         <div id="output"></div>
         <div>
-            @if(Sentinel::getUser()->pic)
-                <img class="img-responsive img-circle" src="{!! url('/').'/uploads/users/'.Sentinel::getUser()->pic !!}" alt="profile pic">
-            @else
-                <img src="http://api.adorable.io/avatars/54/{!! Sentinel::getUser()->email !!}"
-                     alt="img" class="img-circle img-bor"/>
-            @endif
+
+                @if(Sentinel::getUser()->pic)
+                    <img src="{!! url('/').'/uploads/users/'.$user->pic !!}" alt="img"
+                         class="img-circle img-responsive "/>
+
+                @elseif(Sentinel::getUser()->gender === "male")
+                    <img src="{{ asset('assets/images/authors/avatar3.png') }}" alt="img"
+                         class="img-circle img-responsive "/>
+
+                @elseif(Sentinel::getUser()->gender === "female")
+                    <img src="{{ asset('assets/images/authors/avatar5.png') }}" alt="img"
+                         class="img-circle img-responsive "/>
+
+                @else
+                    <img src="{{ asset('assets/images/authors/no_avatar.jpg') }}" alt="img"
+                         class="img-circle img-responsive"/>
+                @endif
         </div>
         <div class="form-box">
             <form method="POST" name="screen">

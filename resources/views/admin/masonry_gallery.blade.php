@@ -11,7 +11,11 @@ Gallery
     
 	<link href="{{ asset('assets/css/pages/animated-masonry-gallery.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/fancybox/jquery.fancybox.css') }}" media="screen" />
-    
+    <style>
+        .mb-10{
+            margin-bottom: 10px;
+        }
+    </style>
 @stop
 
 {{-- Page content --}}
@@ -39,13 +43,13 @@ Gallery
                         <div id="gallery">
                             <div class="col-md-5 col-xs-12" id="gallery-header-center-left-title">All Galleries</div>
                             <div class="pull-right">
-                                <div class="col-xs-12">
+                                <div class="col-xs-12 mb-10">
                                     <button type="button" id="filter-all" class="btn btn-responsive btn-info btn-xs">All</button>
                                     <button type="button" id="filter-studio" class="btn btn-responsive btn-primary btn-xs">Studio</button>
                                     <button type="button" id="filter-landscape" class="btn btn-responsive btn-success btn-xs">Landscape</button>
                                 </div>
                             </div>
-                            <div id="gallery-content">
+                            <div id="gallery-content ">
                                 <div class="row" id="gallery-content-center">
                                     <a class="fancybox img-responsive" href="{{ asset('assets/img/img_holder/big/1.jpg') }}" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
                                         <img src="{{ asset('assets/img/img_holder/big/1.jpg') }}" class="img-responsive all studio" alt="gallery">

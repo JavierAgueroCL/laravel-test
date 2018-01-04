@@ -23,6 +23,7 @@ body {
 .note-editable {
     height : 300px;
     width  : 100%;
+    min-height: 300px;
 }
 .note-popover .popover-content .dropdown-menu,
 .panel-heading.note-toolbar .dropdown-menu {
@@ -60,9 +61,8 @@ a[data-wysihtml5-command="insertImage"],
 .wysihtml5-toolbar > li:nth-child(5), .bootstrap-wysihtml5-insert-link-modal {
     visibility : hidden;
 }
-.note-editable{
-    min-height: 300px !important;
-}
+
+
 @media (min-width:320px) and (max-width:425px){
     .bootstrap-admin-panel-content .note-fontname{
         width:100px !important;
@@ -74,10 +74,15 @@ a[data-wysihtml5-command="insertImage"],
         display: block;
     }
   .panel-heading.note-toolbar .note-color .dropdown-menu{
-        margin-left:0px;
+      margin-left: 0;
       min-width:176px !important;
     }
 
+    .trumbowyg-dropdown {
+        left: inherit !important;
+        right: 0;
+
+    }
 
 }
 @media (max-width:425px){
@@ -87,5 +92,19 @@ a[data-wysihtml5-command="insertImage"],
     }
     .panel-heading.note-toolbar .note-color .dropdown-menu .btn-group:first-child{
         display: block;
+    }
+}
+
+@media (min-width: 419px ) and (max-width: 550px) {
+    .trumbowyg-dropdown-backColor, .trumbowyg-dropdown-foreColor, .trumbowyg-dropdown {
+        right: 0;
+        left: inherit !important;
+    }
+
+}
+
+@media (min-width: 371px) and (max-width: 381px) {
+    .trumbowyg-dropdown-backColor, .trumbowyg-dropdown-foreColor {
+        left: 30px !important;
     }
 }

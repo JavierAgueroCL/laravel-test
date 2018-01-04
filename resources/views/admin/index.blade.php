@@ -9,22 +9,20 @@
 {{-- page level styles --}}
 @section('header_styles')
 
-    <link href="{{ asset('assets/vendors/fullcalendar/css/fullcalendar.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('assets/css/pages/calendar_custom.css') }}" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" media="all" href="{{ asset('assets/vendors/bower-jvectormap/css/jquery-jvectormap-1.2.2.css') }}"/>
+
     <link rel="stylesheet" href="{{ asset('assets/vendors/animate/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/only_dashboard.css') }}"/>
     <meta name="_token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" type="text/css"
-          href="{{ asset('assets/vendors/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('assets/vendors/morrisjs/morris.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/dashboard2.css') }}"/>
 @stop
 
 {{-- Page content --}}
 @section('content')
 
     <section class="content-header">
-        <h1>Welcome to Dashboard</h1>
+        <h1>Welcome to Dashboard   <span class="hidden-xs header_info">( Dynamic Dashboard )</span></h1>
+
         <ol class="breadcrumb">
             <li class="active">
                 <a href="#">
@@ -35,440 +33,349 @@
         </ol>
     </section>
     <section class="content">
+        @if ($analytics_error != 0)
+            <div class="alert alert-danger alert-dismissable margin5">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Error:</strong> You Need to add Google Analytics file for full working of the page
+            </div>
+        @endif
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 margin_10 animated fadeInLeftBig">
                 <!-- Trans label pie charts strats here-->
-                <div class="lightbluebg no-radius">
+                <div class="widget-1">
                     <div class="panel-body squarebox square_boxs">
                         <div class="col-xs-12 pull-left nopadmar">
                             <div class="row">
                                 <div class="square_box col-xs-7 text-right">
-                                    <span>Views Today</span>
-
-                                    <div class="number" id="myTargetElement1"></div>
-                                </div>
-                                <i class="livicon  pull-right" data-name="eye-open" data-l="true" data-c="#fff"
-                                   data-hc="#fff" data-s="70"></i>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <small class="stat-label">Last Week</small>
-                                    <h4 id="myTargetElement1.1"></h4>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <small class="stat-label">Last Month</small>
-                                    <h4 id="myTargetElement1.2"></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 margin_10 animated fadeInUpBig">
-                <!-- Trans label pie charts strats here-->
-                <div class="redbg no-radius">
-                    <div class="panel-body squarebox square_boxs">
-                        <div class="col-xs-12 pull-left nopadmar">
-                            <div class="row">
-                                <div class="square_box col-xs-7 pull-left">
-                                    <span>Today's Sales</span>
-
-                                    <div class="number" id="myTargetElement2"></div>
-                                </div>
-                                <i class="livicon pull-right" data-name="piggybank" data-l="true" data-c="#fff"
-                                   data-hc="#fff" data-s="70"></i>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <small class="stat-label">Last Week</small>
-                                    <h4 id="myTargetElement2.1"></h4>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <small class="stat-label">Last Month</small>
-                                    <h4 id="myTargetElement2.2"></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-md-6 margin_10 animated fadeInDownBig">
-                <!-- Trans label pie charts strats here-->
-                <div class="goldbg no-radius">
-                    <div class="panel-body squarebox square_boxs">
-                        <div class="col-xs-12 pull-left nopadmar">
-                            <div class="row">
-                                <div class="square_box col-xs-7 pull-left">
-                                    <span>Subscribers</span>
+                                    <span>Visitors</span>
 
                                     <div class="number" id="myTargetElement3"></div>
                                 </div>
-                                <i class="livicon pull-right" data-name="archive-add" data-l="true" data-c="#fff"
-                                   data-hc="#fff" data-s="70"></i>
+                                <span class="widget_circle3 pull-right">
+ <i class="livicon livicon-evo-holder " data-name="eye-open" data-l="true" data-c="#01BC8C"
+    data-hc="#01BC8C" data-s="40"></i>
+                                </span>
+
                             </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 margin_10 animated fadeInLeftBig">
+                <!-- Trans label pie charts strats here-->
+                <div class="widget-1">
+                    <div class="panel-body squarebox square_boxs">
+                        <div class="col-xs-12 pull-left nopadmar">
                             <div class="row">
-                                <div class="col-xs-6">
-                                    <small class="stat-label">Last Week</small>
-                                    <h4 id="myTargetElement3.1"></h4>
+                                <div class="square_box col-xs-7 text-right">
+                                    <span>Users</span>
+
+                                    <div class="number" id="myTargetElement4"></div>
                                 </div>
-                                <div class="col-xs-6 text-right">
-                                    <small class="stat-label">Last Month</small>
-                                    <h4 id="myTargetElement3.2"></h4>
-                                </div>
+                                <span class="widget_circle4 pull-right">
+ <i class="livicon livicon-evo-holder " data-name="user" data-l="true" data-c="#F89A14"
+    data-hc="#F89A14" data-s="40"></i>
+                                </span>
+
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 margin_10 animated fadeInRightBig">
                 <!-- Trans label pie charts strats here-->
-                <div class="palebluecolorbg no-radius">
+                <div class="widget-1">
                     <div class="panel-body squarebox square_boxs">
                         <div class="col-xs-12 pull-left nopadmar">
                             <div class="row">
-                                <div class="square_box col-xs-7 pull-left">
-                                    <span>Registered Users</span>
+                                <div class="square_box col-xs-7 text-right">
+                                    <span>Page Views</span>
 
-                                    <div class="number" id="myTargetElement4"></div>
+                                    <div class="number" id="myTargetElement1"></div>
                                 </div>
-                                <i class="livicon pull-right" data-name="users" data-l="true" data-c="#fff"
-                                   data-hc="#fff" data-s="70"></i>
+                                <span class="widget_circle1 pull-right">
+ <i class="livicon livicon-evo-holder " data-name="flag" data-l="true" data-c="#e9573f"
+    data-hc="#e9573f" data-s="40"></i>
+                                </span>
+
                             </div>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <small class="stat-label">Last Week</small>
-                                    <h4 id="myTargetElement4.1"></h4>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <small class="stat-label">Last Month</small>
-                                    <h4 id="myTargetElement4.2"></h4>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 margin_10 animated fadeInRightBig">
+                <!-- Trans label pie charts strats here-->
+                <div class="widget-1">
+                    <div class="panel-body squarebox square_boxs">
+                        <div class="col-xs-12 pull-left nopadmar">
+                            <div class="row">
+                                <div class="square_box col-xs-7 text-right">
+                                    <span>Articles</span>
+
+                                    <div class="number" id="myTargetElement2"></div>
+                                </div>
+                                <span class="widget_circle2 pull-right">
+ <i class="livicon livicon-evo-holder " data-name="pen" data-l="true" data-c="#418BCA"
+    data-hc="#418BCA" data-s="40"></i>
+                                </span>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <!--/row-->
         <div class="row ">
-            <div class="col-md-8 col-sm-6">
+            <div class="col-md-8 col-sm-7 no_padding">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="panel panel-border main_chart">
+                            <div class="panel-heading ">
+                                <h3 class="panel-title">
+                                    <i class="livicon" data-name="barchart" data-size="16" data-loop="true" data-c="#EF6F6C" data-hc="#EF6F6C"></i> Users Stats
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                {!! $db_chart->html() !!}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="panel panel-border roles_chart">
+
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <i class="livicon" data-name="users" data-size="16" data-loop="true" data-c="#F89A14"
+                                       data-hc="#F89A14"></i>
+                                    User Roles
+                                </h4>
+
+                            </div>
+                            <div class="panel-body nopadmar">
+                                {!! $user_roles->html() !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="panel panel-border">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <i class="livicon" data-name="barchart" data-size="16" data-loop="true" data-c="#67C5DF"
+                                       data-hc="#67C5DF"></i>
+                                    Yearly visitors
+                                </h4>
+
+                            </div>
+                            <div class="panel-body nopadmar">
+                                <div id="bar_chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="panel panel-border map">
+
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <i class="livicon" data-name="map" data-size="16" data-loop="true" data-c="#515763"
+                                       data-hc="#515763"></i>
+                                    Users from countries
+                                </h3>
+
+                            </div>
+                            <div class="panel-body nopadmar">
+                                {!! $geo->html() !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-5">
+                <div class="panel panel-border">
+                    <div class="panel-heading border-light">
+                        <h3 class="panel-title">
+                            <i class="livicon" data-name="users" data-size="18" data-color="#00bc8c" data-hc="#00bc8c"
+                               data-l="true"></i>
+                            Recent Users
+                        </h3>
+                    </div>
+                    <div class="panel-body nopadmar users">
+                        @foreach($users as $user )
+                            <div class="media">
+                                <div class="media-left">
+                                    @if($user->pic)
+                                    <img src="{!! url('/').'/uploads/users/'.$user->pic !!}" class="media-object img-circle" >
+                                    @else
+                                        <img src="{{ asset('assets/images/authors/no_avatar.jpg') }}" class="media-object img-circle" >
+                                     @endif
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="media-heading">{{ $user->full_name }}</h5>
+                                    <p>{{ $user->email }}  <span class="user_create_date pull-right">{{ $user->created_at->format('d M') }} </span></p>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
                 <div class="panel panel-border">
                     <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <i class="livicon" data-name="dashboard" data-size="20" data-loop="true" data-c="#F89A14"
-                               data-hc="#F89A14"></i>
-                            Realtime Server Load
-                            <small>- Load on the Server</small>
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <div id="realtimechart" style="height:350px;"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="panel blue_gradiant_bg">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <i class="livicon" data-name="linechart" data-size="16" data-loop="true" data-c="#fff"
-                               data-hc="white"></i>
-                            Server Stats
-                            <small class="white-text">- Monthly Report</small>
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="sparkline-chart">
-                                    <div class="number" id="sparkline_bar"></div>
-                                    <h3 class="title">Network</h3>
-                                </div>
-                            </div>
-                            <div class="margin-bottom-10 visible-sm"></div>
-                            <div class="margin-bottom-10 visible-sm"></div>
-                            <div class="col-sm-6">
-                                <div class="sparkline-chart">
-                                    <div class="number" id="sparkline_line"></div>
-                                    <h3 class="title">Load Rate</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- BEGIN Percentage monitor -->
-                <div class="panel green_gradiante_bg ">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <i class="livicon" data-name="spinner-six" data-size="16" data-loop="false" data-c="#fff"
-                               data-hc="white"></i>
-                            Result vs Target
-                        </h3>
+                        <h4 class="panel-title">
+                            <i class="livicon" data-name="eye-open" data-size="16" data-loop="true" data-c="#EF6F6C"
+                               data-hc="#EF6F6C"></i>
+                            This week visitors
+                        </h4>
+
                     </div>
                     <div class="panel-body nopadmar">
-                        <div class="row">
-                            <div class="col-sm-6 text-center">
-                                <h4 class="small-heading">Sales</h4>
-                            <span class="chart cir chart-widget-pie widget-easy-pie-1" data-percent="45"><span
-                                        class="percent">45</span>
-                            </span>
-                            </div>
-                            <!-- /.col-sm-4 -->
-                            <div class="col-sm-6 text-center">
-                                <h4 class="small-heading">Reach</h4>
-                            <span class="chart cir chart-widget-pie widget-easy-pie-3" data-percent="25">
-                                <span class="percent">25</span>
-                            </span>
-                            </div>
-                            <!-- /.col-sm-4 -->
-                        </div>
-
-                        <!-- /.row -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-                <!-- END BEGIN Percentage monitor-->
-            </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="panel panel-success panel-border">
-                    <div class="panel-heading  border-light">
-                        <h4 class="panel-title">
-                            <i class="livicon" data-name="calendar" data-size="16" data-loop="true" data-c="#fff" data-hc="#fff"></i> Calendar
-                        </h4>
-                    </div>
-                    <div class="panel-body">
-                        <div id='external-events'></div>
-                        <div id="calendar"></div>
-                        <div id="fullCalModal" class="modal fade">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-                                        <h4 id="modalTitle" class="modal-title"></h4>
-                                    </div>
-                                    <div id="modalBody" class="modal-body">
-                                        <i class="mdi-action-alarm-on"></i>&nbsp;&nbsp;Start: <span id="startTime"></span>&nbsp;&nbsp;- End: <span id="endTime"></span>
-                                        <h4 id="eventInfo"></h4>
-                                        <br>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-raised btn-danger" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-footer pad-5">
-                            <a href="#" class="btn btn-success btn-block createevent_btn" data-toggle="modal" data-target="#myModal">Create event
-                            </a>
-                        </div>
-                        <!-- Modal -->
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title" id="myModalLabel">
-                                            <i class="fa fa-plus" style="margin-top: 8px;"></i> Create Event
-                                        </h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="input-group">
-                                            <input type="text" id="new-event" class="form-control" placeholder="Event">
-                                            <div class="input-group-btn">
-                                                <button type="button" id="color-chooser-btn" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                                                    Type
-                                                    <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu pull-right" id="color-chooser">
-                                                    <li>
-                                                        <a class="palette-primary" href="#">Primary</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="palette-success" href="#">Success</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="palette-info" href="#">Info</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="palette-warning" href="#">warning</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="palette-danger" href="#">Danger</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="palette-default" href="#">Default</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- /btn-group -->
-                                        </div>
-                                        <!-- /input-group -->
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">
-                                            Close
-                                            <i class="fa fa-times" style="margin-top: 4px;"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-success pull-left" id="add-new-event" data-dismiss="modal">
-                                            <i class="fa fa-plus" style="margin-top: 5px;"></i> Add
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="visitors_chart"></div>
                     </div>
                 </div>
-            </div>
-            <!-- To do list -->
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="panel panel-primary todolist">
-                    <div class="panel-heading border-light">
-                        <h4 class="panel-title">
-                            <i class="livicon" data-name="medal" data-size="18" data-color="white" data-hc="white"
-                               data-l="true"></i>
-                            Tasks
-                        </h4>
-                    </div>
-                    <div class="panel-body nopadmar">
-                        <div class="panel-body">
-                            <div class="row list_of_items ">
-                            </div>
-                        </div>
-                        <div class="add_list adds">
-                            {!! Form::open(['class'=>'form', 'id'=>'main_input_box']) !!}
-                            <div class="form-group">
-                                {!! Form::label('task_description', 'Task description: ') !!}
-                                {!! Form::text('task_description', null, ['class' => 'form-control','id'=>'task_description', 'required' => 'required']) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('task_deadline', 'Deadline: ') !!}
-                                {!! Form::text('task_deadline', null, ['class' => 'form-control datepicker', 'id'=>'task_deadline', 'data-date-format'=> 'YYYY/MM/DD', 'required' => 'required']) !!}
-                            </div>
-                            <button type="submit" class="btn btn-primary add_button">
-                                Add Task
-                            </button>
-                            {!! Form::close() !!}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="row ">
-            <div class="col-md-4 col-sm-12">
-                <div class="panel panel-danger">
-                    <div class="panel-heading border-light">
-                        <h4 class="panel-title">
-                            <i class="livicon" data-name="mail" data-size="18" data-color="white" data-hc="white"
-                               data-l="true"></i>
-                            Quick Mail
-                        </h4>
-                    </div>
-                    <div class="panel-body no-padding">
-                        <div class="compose row">
-                            <label class="col-md-3 hidden-xs" style="padding: 0">To:</label>
-                            <input type="text" class="col-md-9 col-xs-9" placeholder="name@email.com " tabindex="1"/>
-
-                            <div class="clear"></div>
-                            <label class="col-md-3 hidden-xs" style="padding: 0">Subject:</label>
-                            <input type="text" class="col-md-9 col-xs-9" tabindex="1" placeholder="Subject"/>
-
-                            <div class="clear"></div>
-                            <div class='box-body'>
-                                <form>
-                                    <textarea class="textarea textarea_home resize_vertical"
-                                              placeholder="Write mail content here"></textarea>
-                                </form>
-                            </div>
-                            <br/>
-
-                            <div class="pull-right">
-                                <a href="#" class="btn btn-danger">Send</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-12">
                 <div class="panel panel-border">
-
-                    <div class="panel-heading">
-                        <h4 class="panel-title pull-left margin-top-10">
-                            <i class="livicon" data-name="map" data-size="16" data-loop="true" data-c="#515763"
-                               data-hc="#515763"></i>
-                            Visitors Map
-                        </h4>
-
-                        <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <i class="livicon" data-name="settings" data-size="16" data-loop="true" data-c="#515763"
-                                   data-hc="#515763"></i>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a class="panel-collapse collapses" href="#">
-                                        <i class="fa fa-angle-up"></i>
-                                        <span>Collapse</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="panel-refresh" href="#">
-                                        <i class="fa fa-refresh"></i>
-                                        <span>Refresh</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="panel-config" href="#panel-config" data-toggle="modal">
-                                        <i class="fa fa-wrench"></i>
-                                        <span>Configurations</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="panel-expand" href="#">
-                                        <i class="fa fa-expand"></i>
-                                        <span>Fullscreen</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
+                    <div class="panel-heading border-light">
+                        <h3 class="panel-title">
+                            <i class="livicon" data-name="pen" data-size="16" data-color="#00bc8c" data-hc="#00bc8c"
+                               data-l="true"></i>
+                            Recent Blogs
+                        </h3>
                     </div>
-                    <div class="panel-body nopadmar">
-                        <div id="world-map-markers" style="width:100%; height:300px;"></div>
+                    <div class="panel-body nopadmar blogs">
+                        @foreach($blogs as $blog )
+                            <div class="media">
+                                <div class="media-left">
+                                    @if($blog->author->pic)
+                                        <img src="{!! url('/').'/uploads/users/'.$blog->author->pic !!}" class="media-object img-circle" >
+                                    @else
+                                        <img src="{{ asset('assets/images/authors/no_avatar.jpg') }}" class="media-object img-circle" >
+                                    @endif
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="media-heading">{{ $blog->title }}</h5>
+
+                                    <p>category:  {{ $blog->category->title }} <span class="user_create_date pull-right">by  {{ $blog->author->full_name }} </span></p>
+                                </div>
+                            </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    <div class="modal fade" id="editConfirmModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Alert</h4>
+                </div>
+                <div class="modal-body">
+                    <p>You are already editing a row, you must save or cancel that row before edit/delete a new row</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 @stop
 
 {{-- page level scripts --}}
 @section('footer_scripts')
     <script type="text/javascript" src="{{ asset('assets/vendors/moment/js/moment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
-
-    <!-- EASY PIE CHART JS -->
-    <script src="{{ asset('assets/vendors/bower-jquery-easyPieChart/js/easypiechart.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/bower-jquery-easyPieChart/js/jquery.easypiechart.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/bower-jquery-easyPieChart/js/jquery.easingpie.js') }}"></script>
     <!--for calendar-->
     <script src="{{ asset('assets/vendors/moment/js/moment.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/vendors/fullcalendar/js/fullcalendar.min.js') }}" type="text/javascript"></script>
-    <!--   Realtime Server Load  -->
-    <script src="{{ asset('assets/vendors/flotchart/js/jquery.flot.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/vendors/flotchart/js/jquery.flot.resize.js') }}" type="text/javascript"></script>
-    <!--Sparkline Chart-->
-    <script src="{{ asset('assets/vendors/sparklinecharts/jquery.sparkline.js') }}"></script>
     <!-- Back to Top-->
     <script type="text/javascript" src="{{ asset('assets/vendors/countUp_js/js/countUp.js') }}"></script>
-    <!--   maps -->
-    <script src="{{ asset('assets/vendors/bower-jvectormap/js/jquery-jvectormap-1.2.2.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/bower-jvectormap/js/jquery-jvectormap-world-mill-en.js') }}"></script>
-    <!--  todolist-->
-    <script src="{{ asset('assets/js/pages/todolist.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/dashboard.js') }}" type="text/javascript"></script>
+    {{--<script src="http://demo.lorvent.com/rare/default/vendors/raphael/js/raphael.min.js"></script>--}}
+    <script src="{{ asset('assets/vendors/morrisjs/morris.min.js') }}"></script>
 
+    <script>
+        var useOnComplete = false,
+            useEasing = false,
+            useGrouping = false,
+        options = {
+            useEasing: useEasing, // toggle easing
+            useGrouping: useGrouping, // 1,000,000 vs 1000000
+            separator: ',', // character to use as a separator
+            decimal: '.' // character to use as a decimal
+        };
+        var demo = new CountUp("myTargetElement1", 12.52, {{ $pageVisits }}, 0, 6, options);
+        demo.start();
+        var demo = new CountUp("myTargetElement2", 1, {{ $blog_count }}, 0, 6, options);
+        demo.start();
+        var demo = new CountUp("myTargetElement3", 24.02, {{ $visitors }}, 0, 6, options);
+        demo.start();
+        var demo = new CountUp("myTargetElement4", 125, {{ $user_count }}, 0, 6, options);
+        demo.start();
+
+        $('.blogs').slimScroll({
+            color: '#A9B6BC',
+            height: 350 + 'px',
+            size: '5px'
+        });
+
+        var week_data = {!! $month_visits !!};
+        var year_data = {!! $year_visits !!};
+
+        function lineChart() {
+            Morris.Line({
+                element: 'visitors_chart',
+                data: week_data,
+                lineColors: ['#418BCA', '#00bc8c', '#EF6F6C'],
+                xkey: 'date',
+                ykeys: ['pageViews', 'visitors'],
+                labels: ['pageViews', 'visitors'],
+                pointSize: 0,
+                lineWidth: 2,
+                resize: true,
+                fillOpacity: 1,
+                behaveLikeLine: true,
+                gridLineColor: '#e0e0e0',
+                hideHover: 'auto'
+
+            });
+        }
+        function barChart() {
+            Morris.Bar({
+                element: 'bar_chart',
+                data: year_data.length ? year_data :   [ { label:"No Data", value:100 } ],
+                barColors: ['#418BCA', '#00bc8c'],
+                xkey: 'date',
+                ykeys: ['pageViews', 'visitors'],
+                labels: ['pageViews', 'visitors'],
+                pointSize: 0,
+                lineWidth: 2,
+                resize: true,
+                fillOpacity: 0.4,
+                behaveLikeLine: true,
+                gridLineColor: '#e0e0e0',
+                hideHover: 'auto'
+
+            });
+        }
+        lineChart();
+        barChart();
+        $(".sidebar-toggle").on("click",function () {
+            setTimeout(function () {
+                $('#visitors_chart').empty();
+                $('#bar_chart').empty();
+                lineChart();
+                barChart();
+            },10);
+        });
+
+    </script>
+    {!! Charts::scripts() !!}
+    {!! $db_chart->script() !!}
+    {!! $geo->script() !!}
+    {!! $user_roles->script() !!}
+    {{--{!! $line_chart->script() !!}--}}
 @stop

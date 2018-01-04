@@ -175,6 +175,8 @@
     <script  src="{{ asset('assets/vendors/ckeditor/js/ckeditor.js') }}"  type="text/javascript"></script>
     <script  src="{{ asset('assets/vendors/ckeditor/js/jquery.js') }}"  type="text/javascript" ></script>
     <script  src="{{ asset('assets/vendors/ckeditor/js/config.js') }}"  type="text/javascript"></script>
-    <script  src="{{ asset('assets/js/pages/editor.js') }}"  type="text/javascript"></script>
+
+            <script src="{{ asset('assets/vendors/ckedit_res/js/plugin.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets/js/pages/editor.js') }}" type="text/javascript"></script>
 
 @stop

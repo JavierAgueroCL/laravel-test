@@ -37,7 +37,7 @@ News Details
             <section class="content">
                 <!--main content-->
                 <div class="row">
-                    <div class="col-sm-8 col-md-9 col-full-width-right">
+                    <div class="col-sm-8 col-md-8 col-full-width-right">
                         <div class="blog-detail-image">
                             <img data-src="holder.js/1900x263/#00BC8C:#fff" class="img-responsive" alt="Image">
                         </div>
@@ -94,7 +94,7 @@ News Details
                         <!-- /the.box .no-border -->
                     </div>
                     <!-- /.col-sm-9 -->
-                    <div class="col-sm-4 col-md-3 col-full-width-left">
+                    <div class="col-sm-4 col-md-4 col-full-width-left">
                         <div class="the-box  no-border no-margin text-center more-padding">
                             <h4>Featured Authors</h4>
                             <br>

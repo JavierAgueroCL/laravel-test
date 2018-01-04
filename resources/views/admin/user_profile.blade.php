@@ -45,7 +45,22 @@ User Profile
                                     <div class="text-center">
                                         <div class="fileinput fileinput-new" data-provides="fileinput">
                                             <div class="fileinput-new thumbnail">
-                                                <img src="{{ asset('assets/img/authors/avatar3.jpg') }}" data-src="holder.js/366x218/#fff:#000" class="img-responsive" width="366px" height="218px" />
+                                                {{--<img src="{{ asset('assets/img/authors/avatar3.jpg') }}" data-src="holder.js/366x218/#fff:#000" class="img-responsive" width="366px" height="218px" />--}}
+                                                @if(Sentinel::getUser()->pic)
+                                                    <img src="{!! url('/').'/uploads/users/'.Sentinel::getUser()->pic !!}" alt="img"
+                                                         class="img-responsive " width="366px" height="218px"/>
+
+                                                @elseif(Sentinel::getUser()->gender === "male")
+                                                    <img src="{{ asset('assets/images/authors/avatar3.png') }}" alt="img"
+                                                         class="img-responsive " width="366px" height="218px"/>
+
+                                                @elseif(Sentinel::getUser()->gender === "female")
+                                                    <img src="{{ asset('assets/images/authors/avatar5.png') }}" alt="img"
+                                                         class="img-responsive " width="366px" height="218px"/>
+                                                @else
+                                                    <img src="{{ asset('assets/images/authors/no_avatar.jpg') }}" alt="img"
+                                                         class="img-responsive" width="366px" height="218px"/>
+                                                @endif
                                             </div>
                                             <div class="fileinput-preview fileinput-exists thumbnail" ></div>
                                             <div>

@@ -41,7 +41,7 @@ Users List
             <br />
             <div class="panel-body">
                 <div class="table-responsive">
-                <table class="table table-bordered " id="table">
+                <table class="table table-bordered width100" id="table">
                     <thead>
                         <tr class="filters">
                             <th>ID</th>

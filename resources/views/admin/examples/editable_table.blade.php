@@ -64,7 +64,7 @@
                         <div id="sample_editable_1_wrapper" class="">
                             <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover dataTable no-footer sample_editable"
-                                   id="sample_editable_1" role="grid">
+                                   id="sample_editable_1" role="grid" width="100%">
                                 <thead>
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
@@ -247,6 +247,7 @@
                         data: tableData,
                         success: function (result) {
                             if(result!='success') {
+                                console.log(result);
                                 swal("There is some error!", result);
                                 editRow(table, nRow);
                                 nEditing = nRow;
@@ -256,8 +257,13 @@
                             }
                         },
                         error: function (result) {
-                            console.log(result)
+                            if (result.status = 442)
+
+
+                            console.log( result.responseText.errors);
+
                         }
+
                     });
 
                 }

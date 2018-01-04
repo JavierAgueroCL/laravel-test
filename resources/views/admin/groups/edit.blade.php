@@ -36,10 +36,10 @@
                 </div>
                 <div class="panel-body">
                     @if($role)
-                        <form class="form-horizontal" role="form" method="post" action="{{ route('admin.groups.update',$role->id) }}">
-                            <input type="hidden" name="_method" value="patch" />
+                        {!! Form::model($role, ['url' => URL::to('admin/groups/'. $role->id), 'method' => 'put', 'class' => 'form-horizontal']) !!}
+                        -
                             <!-- CSRF Token -->
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                            {{ csrf_field() }}
 
                             <div class="form-group {{ $errors->
                                 first('name', 'has-error') }}">
@@ -73,7 +73,10 @@
                         </div>
                     </form>
                     @else
-                        <h1>@lang('groups/message.no_role_exists')</h1>
+                        <h1>@lang('groups/message.error.no_role_exists')</h1>
+                            <a class="btn btn-danger" href="{{ route('admin.groups.index') }}">
+                                @lang('button.back')
+                            </a>
                     @endif
                 </div>
             </div>

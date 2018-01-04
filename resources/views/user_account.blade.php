@@ -40,10 +40,9 @@
                         <div>
                             <h3 class="text-primary" id="title">Personal Information</h3>
                         </div>
-                        <form role="form" id="tryitForm" class="form-horizontal" enctype="multipart/form-data"
-                              action="{{ route('my-account') }}" method="POST">
-                            <input type="hidden" name="_method" value="PUT">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        {!! Form::model($user, ['url' => URL::to('my-account'), 'method' => 'put', 'class' => 'form-horizontal','enctype'=>"multipart/form-data"]) !!}
+
+                        {{ csrf_field() }}
                             <div class="form-group {{ $errors->first('pic', 'has-error') }}">
                                 <label class="col-md-2 control-label">Avatar:</label>
                                 <div class="col-md-10">
