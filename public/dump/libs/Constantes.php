@@ -1,7 +1,7 @@
 <?php
 class Constantes
 {    
-    const baseURL = "http://localhost/DTE";
+    const baseURL = "http://stack.getctrl.io/dump/";
     const DB_USERNAME = "username";
     const DB_PASSWORD = "password";
     const DB_NAME = "db_name";

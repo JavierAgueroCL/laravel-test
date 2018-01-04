@@ -1,36 +1,38 @@
 <?php
-
+require_once("xmldsig/XMLSecurityKey.php");
+require_once("xmldsig/Adapter/AdapterInterface.php");
+require_once("xmldsig/Adapter/XmlseclibsAdapter.php");
 function ConexionAutomaticaSII($empresa = "", &$mensaje = "", $cron = ""){
     /*@var $empresa Emisores */
         try{
 
             $cliente = new nusoap_client(Constantes::SemillaProduccion, false);
             $result = $cliente->call('getSeed');
-            
+
             if ($cliente->fault) {
                 $mensaje .= "<h2>Fault</h2><pre>";
                 $mensaje .= $result;
                 $mensaje .="</pre>";
                 return false;
             }
-            
+
             $soapError = $cliente->getError();
             if (!empty($soapError)) {
                 $mensaje .= 'SOAP method invocation (verifyT) failed: ' . $soapError;
-                return false;            
-            }              
-            
+                return false;
+            }
+
             $pRutEmpresa   = substr($empresa,0, -2);
-            
+
             $seed = new DOMDocument;
             $seed->loadXML($result);
             $semilla = $seed->getElementsByTagName("SEMILLA")->item(0)->nodeValue;
             $estado = $seed->getElementsByTagName("ESTADO")->item(0)->nodeValue;
-            
+
             if($estado == "00"){
                 $xmlr = simplexml_load_string($result);
                 $nombre_semilla = md5(uniqid());
-                $xmlr->saveXML("semillas/" . $nombre_semilla .".xml");             
+                $xmlr->saveXML("semillas/" . $nombre_semilla .".xml");
                 $body = "<getToken><item><Semilla>$semilla</Semilla></item></getToken>";
                 $dom = new DOMDocument;
                 $dom->formatOutput = FALSE;
@@ -63,28 +65,28 @@ function ConexionAutomaticaSII($empresa = "", &$mensaje = "", $cron = ""){
                         $mensaje .= "<h2>Fault</h2><pre>";
                         $mensaje .= $result;
                         $mensaje .="</pre>";
-	                    return false;            
+	                    return false;
                     }
 
                     $soapError = $TokenClient->getError();
                     if (!empty($soapError)) {
                         $mensaje .= 'SOAP method invocation (verifyT) failed: ' . $soapError;
-                        return false;             
-                    }            
+                        return false;
+                    }
 
 		            /***** OBTENER EL TOKEN *****/
 		            $formato = str_replace( 'SII:', '', $rs );
 		            $xml = simplexml_load_string($formato);
 		            $tokenSII = $xml->RESP_BODY->TOKEN;
-		            /***** OBTENER EL TOKEN *****/  
-		            
-		            unlink("semillas/". $nombre_token .".xml");     
-		            unlink("semillas/". $nombre_semilla .".xml");  
+		            /***** OBTENER EL TOKEN *****/
+
+		            unlink("semillas/". $nombre_token .".xml");
+		            unlink("semillas/". $nombre_semilla .".xml");
 
                     if($tokenSII == NULL || $tokenSII == ""){
                         return FALSE;
-                    }   
-                    
+                    }
+
                     return $tokenSII;
                 }else{
                     echo "NO SE ENCONTRO EL CERTIFICADO \n\r";
@@ -99,5 +101,5 @@ function ConexionAutomaticaSII($empresa = "", &$mensaje = "", $cron = ""){
             echo $exception->getTraceAsString();
             echo $exception->getMessage();
             die();
-        }            
+        }
 }
